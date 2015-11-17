@@ -1,0 +1,210 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="glsoverviewdbModel.Store" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.5" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="car">
+          <Key>
+            <PropertyRef Name="CarID" />
+          </Key>
+          <Property Name="CarID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Licenseplate" Type="int" Nullable="false" />
+          <Property Name="RouteNr" Type="varchar" MaxLength="45" />
+          <Property Name="Hauler" Type="varchar" MaxLength="45" />
+          <Property Name="Status" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="employee">
+          <Key>
+            <PropertyRef Name="EmployeeID" />
+          </Key>
+          <Property Name="EmployeeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="EmployeeNumber" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="EmployeeName" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="Admin" Type="bool" />
+        </EntityType>
+        <EntityType Name="registration">
+          <Key>
+            <PropertyRef Name="RegistraionID" />
+          </Key>
+          <Property Name="RegistraionID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RegistrationDate" Type="datetime" Precision="0" />
+          <Property Name="RegistrationComment" Type="varchar" MaxLength="255" />
+          <Property Name="Registraion_carID" Type="int" Nullable="false" />
+          <Property Name="Registraion_employeeID" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="registration_ibfk_1">
+          <End Role="car" Type="Self.car" Multiplicity="1" />
+          <End Role="registration" Type="Self.registration" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="car">
+              <PropertyRef Name="CarID" />
+            </Principal>
+            <Dependent Role="registration">
+              <PropertyRef Name="Registraion_carID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="registration_ibfk_2">
+          <End Role="employee" Type="Self.employee" Multiplicity="1" />
+          <End Role="registration" Type="Self.registration" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="employee">
+              <PropertyRef Name="EmployeeID" />
+            </Principal>
+            <Dependent Role="registration">
+              <PropertyRef Name="Registraion_employeeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="glsoverviewdbModelStoreContainer">
+          <EntitySet Name="car" EntityType="Self.car" Schema="glsoverviewdb" store:Type="Tables" />
+          <EntitySet Name="employee" EntityType="Self.employee" Schema="glsoverviewdb" store:Type="Tables" />
+          <EntitySet Name="registration" EntityType="Self.registration" Schema="glsoverviewdb" store:Type="Tables" />
+          <AssociationSet Name="registration_ibfk_1" Association="Self.registration_ibfk_1">
+            <End Role="car" EntitySet="car" />
+            <End Role="registration" EntitySet="registration" />
+          </AssociationSet>
+          <AssociationSet Name="registration_ibfk_2" Association="Self.registration_ibfk_2">
+            <End Role="employee" EntitySet="employee" />
+            <End Role="registration" EntitySet="registration" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="glsoverviewdbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="car">
+          <Key>
+            <PropertyRef Name="CarID" />
+          </Key>
+          <Property Name="CarID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Licenseplate" Type="Int32" Nullable="false" />
+          <Property Name="RouteNr" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="Hauler" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="Status" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="registration" Relationship="Self.registration_ibfk_1" FromRole="car" ToRole="registration" />
+        </EntityType>
+        <EntityType Name="employee">
+          <Key>
+            <PropertyRef Name="EmployeeID" />
+          </Key>
+          <Property Name="EmployeeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EmployeeNumber" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="EmployeeName" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Admin" Type="Boolean" />
+          <NavigationProperty Name="registration" Relationship="Self.registration_ibfk_2" FromRole="employee" ToRole="registration" />
+        </EntityType>
+        <EntityType Name="registration">
+          <Key>
+            <PropertyRef Name="RegistraionID" />
+          </Key>
+          <Property Name="RegistraionID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RegistrationDate" Type="DateTime" />
+          <Property Name="RegistrationComment" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Registraion_carID" Type="Int32" Nullable="false" />
+          <Property Name="Registraion_employeeID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="car" Relationship="Self.registration_ibfk_1" FromRole="registration" ToRole="car" />
+          <NavigationProperty Name="employee" Relationship="Self.registration_ibfk_2" FromRole="registration" ToRole="employee" />
+        </EntityType>
+        <Association Name="registration_ibfk_1">
+          <End Role="car" Type="Self.car" Multiplicity="1" />
+          <End Role="registration" Type="Self.registration" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="car">
+              <PropertyRef Name="CarID" />
+            </Principal>
+            <Dependent Role="registration">
+              <PropertyRef Name="Registraion_carID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="registration_ibfk_2">
+          <End Role="employee" Type="Self.employee" Multiplicity="1" />
+          <End Role="registration" Type="Self.registration" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="employee">
+              <PropertyRef Name="EmployeeID" />
+            </Principal>
+            <Dependent Role="registration">
+              <PropertyRef Name="Registraion_employeeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="glsoverviewdbEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="car" EntityType="Self.car" />
+          <EntitySet Name="employee" EntityType="Self.employee" />
+          <EntitySet Name="registration" EntityType="Self.registration" />
+          <AssociationSet Name="registration_ibfk_1" Association="Self.registration_ibfk_1">
+            <End Role="car" EntitySet="car" />
+            <End Role="registration" EntitySet="registration" />
+          </AssociationSet>
+          <AssociationSet Name="registration_ibfk_2" Association="Self.registration_ibfk_2">
+            <End Role="employee" EntitySet="employee" />
+            <End Role="registration" EntitySet="registration" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="glsoverviewdbModelStoreContainer" CdmEntityContainer="glsoverviewdbEntities">
+          <EntitySetMapping Name="car">
+            <EntityTypeMapping TypeName="glsoverviewdbModel.car">
+              <MappingFragment StoreEntitySet="car">
+                <ScalarProperty Name="CarID" ColumnName="CarID" />
+                <ScalarProperty Name="Licenseplate" ColumnName="Licenseplate" />
+                <ScalarProperty Name="RouteNr" ColumnName="RouteNr" />
+                <ScalarProperty Name="Hauler" ColumnName="Hauler" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="employee">
+            <EntityTypeMapping TypeName="glsoverviewdbModel.employee">
+              <MappingFragment StoreEntitySet="employee">
+                <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
+                <ScalarProperty Name="EmployeeNumber" ColumnName="EmployeeNumber" />
+                <ScalarProperty Name="EmployeeName" ColumnName="EmployeeName" />
+                <ScalarProperty Name="Admin" ColumnName="Admin" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="registration">
+            <EntityTypeMapping TypeName="glsoverviewdbModel.registration">
+              <MappingFragment StoreEntitySet="registration">
+                <ScalarProperty Name="RegistraionID" ColumnName="RegistraionID" />
+                <ScalarProperty Name="RegistrationDate" ColumnName="RegistrationDate" />
+                <ScalarProperty Name="RegistrationComment" ColumnName="RegistrationComment" />
+                <ScalarProperty Name="Registraion_carID" ColumnName="Registraion_carID" />
+                <ScalarProperty Name="Registraion_employeeID" ColumnName="Registraion_employeeID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

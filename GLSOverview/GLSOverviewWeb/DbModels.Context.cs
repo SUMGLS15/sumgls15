@@ -27,6 +27,6 @@ namespace GLSOverviewWeb
     
         public virtual DbSet<car> car { get; set; }
         public virtual DbSet<employee> employee { get; set; }
-        public virtual DbSet<registraion> registraion { get; set; }
+        public virtual DbSet<registration> registration { get; set; }
     }
 }

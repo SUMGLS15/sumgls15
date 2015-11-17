@@ -17,15 +17,15 @@ namespace GLSOverviewWeb
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public employee()
         {
-            this.registraion = new HashSet<registraion>();
+            this.registration = new HashSet<registration>();
         }
     
-        public int employeeID { get; set; }
-        public string employeeNumber { get; set; }
-        public string name { get; set; }
-        public Nullable<bool> admin { get; set; }
+        public int EmployeeID { get; set; }
+        public string EmployeeNumber { get; set; }
+        public string EmployeeName { get; set; }
+        public Nullable<bool> Admin { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<registraion> registraion { get; set; }
+        public virtual ICollection<registration> registration { get; set; }
     }
 }

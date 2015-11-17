@@ -17,16 +17,16 @@ namespace GLSOverviewWeb
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public car()
         {
-            this.registraion = new HashSet<registraion>();
+            this.registration = new HashSet<registration>();
         }
     
-        public int carID { get; set; }
-        public int licenseplate { get; set; }
-        public string routeNr { get; set; }
-        public string hauler { get; set; }
-        public int status { get; set; }
+        public int CarID { get; set; }
+        public int Licenseplate { get; set; }
+        public string RouteNr { get; set; }
+        public string Hauler { get; set; }
+        public int Status { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<registraion> registraion { get; set; }
+        public virtual ICollection<registration> registration { get; set; }
     }
 }
