@@ -1,7 +1,31 @@
-﻿
+﻿@model IEnumerable<GLSOverviewWeb.employee>
+
+@using GLSOverviewWeb.Controllers
+
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Oversigt";
 }
 
-<h2>Index</h2>
+<h2>Oversigt</h2>
+
+<h3>Hjemme</h3>
+<table class="table table-striped">
+    @foreach (var item in Model)
+    {
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.EmployeeName)
+                </td>
+
+            </tr>
+        }
+    }
+</table>
+
+<h3>Ude at køre</h3>
+
+<h3>Afleveret</h3>
+
+
 
