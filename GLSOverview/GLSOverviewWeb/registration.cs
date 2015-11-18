@@ -14,11 +14,11 @@ namespace GLSOverviewWeb
     
     public partial class registration
     {
-        public int RegistraionID { get; set; }
-        public Nullable<System.DateTime> RegistrationDate { get; set; }
-        public string RegistrationComment { get; set; }
-        public int Registraion_carID { get; set; }
-        public int Registraion_employeeID { get; set; }
+        public int Id { get; set; }
+        public Nullable<System.DateTime> Date { get; set; }
+        public string Comment { get; set; }
+        public int CarId { get; set; }
+        public int EmployeeId { get; set; }
     
         public virtual car car { get; set; }
         public virtual employee employee { get; set; }

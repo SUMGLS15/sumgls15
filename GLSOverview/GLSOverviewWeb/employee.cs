@@ -20,9 +20,10 @@ namespace GLSOverviewWeb
             this.registration = new HashSet<registration>();
         }
     
-        public int EmployeeID { get; set; }
-        public string EmployeeNumber { get; set; }
-        public string EmployeeName { get; set; }
+        public int Id { get; set; }
+        public string EmpNo { get; set; }
+        public string Name { get; set; }
+        public string Password { get; set; }
         public Nullable<bool> Admin { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

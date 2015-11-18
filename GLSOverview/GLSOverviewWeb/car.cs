@@ -20,9 +20,9 @@ namespace GLSOverviewWeb
             this.registration = new HashSet<registration>();
         }
     
-        public int CarID { get; set; }
-        public int Licenseplate { get; set; }
-        public string RouteNr { get; set; }
+        public int Id { get; set; }
+        public string Licenseplate { get; set; }
+        public string RouteNo { get; set; }
         public string Hauler { get; set; }
         public int Status { get; set; }
     
