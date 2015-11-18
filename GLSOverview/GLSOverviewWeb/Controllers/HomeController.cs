@@ -7,14 +7,13 @@ using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 using System.Web.UI.WebControls;
 
-
 namespace GLSOverviewWeb.Controllers
 {
+    public enum StatusTypes { Home, Out, Delivered }
 
-    public enum StatusTypes { Home = 0, Out = 1, Delivered = 2 }
     public class HomeController : Controller
     {
-        private glsoverviewdbEntities1 glsDb = new glsoverviewdbEntities1();
+        private glsoverviewdbEntities _db = new glsoverviewdbEntities();
 
         private car selectedCar = null;
         private employee selecedEmployee = null;
@@ -23,25 +22,21 @@ namespace GLSOverviewWeb.Controllers
         // GET: Home
         public ActionResult Index()
         {
-            using (glsDb)
-
-            {
-                
-                
-                
-                var cars = glsDb.car.ToList();
+            using (_db)
+            {   
+                var cars = _db.cars.ToList();
                 return View(cars);
             }
         }
 
         public ActionResult EmployeesLogin(int id)
         {
-            selectedCar = glsDb.car.Find(id);
+            selectedCar = _db.cars.Find(id);
 
-            using (glsDb)
+            using (_db)
             {
                 List<employee> resList = new List<employee>();
-                var query = from e in glsDb.employee
+                var query = from e in _db.employees
                             orderby e.Name ascending 
                             select e;
                 foreach (var emp in query)
@@ -53,9 +48,9 @@ namespace GLSOverviewWeb.Controllers
             }
         }
 
-        public ActionResult RegisterCarCheked(int id)
+        public ActionResult RegisterCarChecked(int id)
         {
-            selecedEmployee = glsDb.employee.Find(id);
+            selecedEmployee = _db.employees.Find(id);
             return View();
         }
     }

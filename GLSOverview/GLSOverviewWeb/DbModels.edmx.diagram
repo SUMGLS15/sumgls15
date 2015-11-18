@@ -5,11 +5,11 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="227afb64d0fa476c93c16cc22783c390" Name="Diagram1">
-        <EntityTypeShape EntityType="glsoverviewdbModel.car" Width="1.5" PointX="0.75" PointY="1" IsExpanded="true" />
-        <EntityTypeShape EntityType="glsoverviewdbModel.employee" Width="1.5" PointX="0.75" PointY="5" IsExpanded="true" />
-        <EntityTypeShape EntityType="glsoverviewdbModel.registration" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
-        <AssociationConnector Association="glsoverviewdbModel.registration_ibfk_1" ManuallyRouted="false" />
-        <AssociationConnector Association="glsoverviewdbModel.registration_ibfk_2" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="glsoverviewdbModel.car" Width="1.5" PointX="0.75" PointY="5" />
+        <EntityTypeShape EntityType="glsoverviewdbModel.employee" Width="1.5" PointX="0.75" PointY="1" />
+        <EntityTypeShape EntityType="glsoverviewdbModel.registration" Width="1.5" PointX="3" PointY="1" />
+        <AssociationConnector Association="glsoverviewdbModel.registration_ibfk_1" />
+        <AssociationConnector Association="glsoverviewdbModel.registration_ibfk_2" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

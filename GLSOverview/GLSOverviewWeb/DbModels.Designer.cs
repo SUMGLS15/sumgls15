@@ -1,4 +1,4 @@
-﻿// T4 code generation is enabled for model 'C:\Users\Morten\Dropbox\Datamatiker\.NET C#\VS Projekter\GLS\sumgls15\GLSOverview\GLSOverviewWeb\DbModels.edmx'. 
+﻿// T4 code generation is enabled for model 'C:\Users\Svend\Dropbox\Datamatiker\__Kode\_VisualStudio\151102_SUM_Projekt_GLS\GLSOverview\GLSOverviewWeb\DbModels.edmx'. 
 // To enable legacy code generation, change the value of the 'Code Generation Strategy' designer
 // property to 'Legacy ObjectContext'. This property is available in the Properties Window when the model
 // is open in the designer.
