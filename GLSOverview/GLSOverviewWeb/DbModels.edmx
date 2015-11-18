@@ -5,7 +5,7 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="glsoverviewdbModel.Store" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.5" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-        <EntityType Name="cars">
+        <EntityType Name="car">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
@@ -36,10 +36,10 @@
           <Property Name="EmployeeId" Type="int" Nullable="false" />
         </EntityType>
         <Association Name="registration_ibfk_1">
-          <End Role="cars" Type="Self.cars" Multiplicity="1" />
+          <End Role="car" Type="Self.car" Multiplicity="1" />
           <End Role="registration" Type="Self.registration" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="cars">
+            <Principal Role="car">
               <PropertyRef Name="Id" />
             </Principal>
             <Dependent Role="registration">
@@ -60,11 +60,11 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="glsoverviewdbModelStoreContainer">
-          <EntitySet Name="cars" EntityType="Self.cars" Schema="glsoverviewdb" store:Type="Tables" />
+          <EntitySet Name="car" EntityType="Self.car" Schema="glsoverviewdb" store:Type="Tables" />
           <EntitySet Name="employee" EntityType="Self.employee" Schema="glsoverviewdb" store:Type="Tables" />
           <EntitySet Name="registration" EntityType="Self.registration" Schema="glsoverviewdb" store:Type="Tables" />
           <AssociationSet Name="registration_ibfk_1" Association="Self.registration_ibfk_1">
-            <End Role="cars" EntitySet="cars" />
+            <End Role="car" EntitySet="car" />
             <End Role="registration" EntitySet="registration" />
           </AssociationSet>
           <AssociationSet Name="registration_ibfk_2" Association="Self.registration_ibfk_2">
@@ -155,7 +155,7 @@
         <EntityContainerMapping StorageEntityContainer="glsoverviewdbModelStoreContainer" CdmEntityContainer="glsoverviewdbEntities">
           <EntitySetMapping Name="cars">
             <EntityTypeMapping TypeName="glsoverviewdbModel.car">
-              <MappingFragment StoreEntitySet="cars">
+              <MappingFragment StoreEntitySet="car">
                 <ScalarProperty Name="Status" ColumnName="Status" />
                 <ScalarProperty Name="Hauler" ColumnName="Hauler" />
                 <ScalarProperty Name="RouteNo" ColumnName="RouteNo" />

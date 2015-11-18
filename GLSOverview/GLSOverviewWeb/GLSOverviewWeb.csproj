@@ -142,6 +142,7 @@
     <Compile Include="car.cs">
       <DependentUpon>DbModels.tt</DependentUpon>
     </Compile>
+    <Compile Include="Controllers\AdminCarsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="DbModels.Context.cs">
       <AutoGen>True</AutoGen>
@@ -178,6 +179,8 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Home\EmployeesLogin.cshtml" />
     <Content Include="Views\Home\RegisterCarCheked.cshtml" />
+    <Content Include="Views\AdminCars\Index.cshtml" />
+    <Content Include="Views\AdminCars\Edit.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -188,7 +191,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
-    <Folder Include="Views\employees\" />
+    <Folder Include="Viewmodels\" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

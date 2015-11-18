@@ -9,14 +9,14 @@
 
 <h3>Car:  @car.Licenseplate</h3>
 <table class="table table-striped">
-    
-        @foreach (var item in Model)
-        {
-            <tr onclick ="document.location = '@Url.Action("RegisterCarCheked", new { id = item.Id })'">
-                <td style="text-align: center">
-                    <h4> @Html.DisplayFor(modelItem => item.Name)</h4>
-                </td>
-            </tr>
-        }
-    
+
+    @foreach (var item in Model)
+    {
+        <tr onclick="document.location = '@Url.Action("RegisterCarCheked", new { id = item.Id })'">
+            <td style="text-align: center">
+                <h4> @Html.DisplayFor(modelItem => item.Name)</h4>
+            </td>
+        </tr>
+    }
+
 </table>
