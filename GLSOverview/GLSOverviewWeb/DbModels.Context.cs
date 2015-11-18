@@ -13,10 +13,10 @@ namespace GLSOverviewWeb
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class glsoverviewdbEntities : DbContext
+    public partial class glsoverviewdbEntities1 : DbContext
     {
-        public glsoverviewdbEntities()
-            : base("name=glsoverviewdbEntities")
+        public glsoverviewdbEntities1()
+            : base("name=glsoverviewdbEntities1")
         {
         }
     

@@ -7,42 +7,43 @@
       <Schema Namespace="glsoverviewdbModel.Store" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.5" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="car">
           <Key>
-            <PropertyRef Name="CarID" />
+            <PropertyRef Name="Id" />
           </Key>
-          <Property Name="CarID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Licenseplate" Type="int" Nullable="false" />
-          <Property Name="RouteNr" Type="varchar" MaxLength="45" />
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Licenseplate" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="RouteNo" Type="varchar" MaxLength="45" />
           <Property Name="Hauler" Type="varchar" MaxLength="45" />
           <Property Name="Status" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="employee">
           <Key>
-            <PropertyRef Name="EmployeeID" />
+            <PropertyRef Name="Id" />
           </Key>
-          <Property Name="EmployeeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="EmployeeNumber" Type="varchar" MaxLength="45" Nullable="false" />
-          <Property Name="EmployeeName" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="EmpNo" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="Password" Type="varchar" MaxLength="20" />
           <Property Name="Admin" Type="bool" />
         </EntityType>
         <EntityType Name="registration">
           <Key>
-            <PropertyRef Name="RegistraionID" />
+            <PropertyRef Name="Id" />
           </Key>
-          <Property Name="RegistraionID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="RegistrationDate" Type="datetime" Precision="0" />
-          <Property Name="RegistrationComment" Type="varchar" MaxLength="255" />
-          <Property Name="Registraion_carID" Type="int" Nullable="false" />
-          <Property Name="Registraion_employeeID" Type="int" Nullable="false" />
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Date" Type="datetime" Precision="0" />
+          <Property Name="Comment" Type="varchar" MaxLength="255" />
+          <Property Name="CarId" Type="int" Nullable="false" />
+          <Property Name="EmployeeId" Type="int" Nullable="false" />
         </EntityType>
         <Association Name="registration_ibfk_1">
           <End Role="car" Type="Self.car" Multiplicity="1" />
           <End Role="registration" Type="Self.registration" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="car">
-              <PropertyRef Name="CarID" />
+              <PropertyRef Name="Id" />
             </Principal>
             <Dependent Role="registration">
-              <PropertyRef Name="Registraion_carID" />
+              <PropertyRef Name="CarId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -51,10 +52,10 @@
           <End Role="registration" Type="Self.registration" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="employee">
-              <PropertyRef Name="EmployeeID" />
+              <PropertyRef Name="Id" />
             </Principal>
             <Dependent Role="registration">
-              <PropertyRef Name="Registraion_employeeID" />
+              <PropertyRef Name="EmployeeId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -78,34 +79,35 @@
       <Schema Namespace="glsoverviewdbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityType Name="car">
           <Key>
-            <PropertyRef Name="CarID" />
+            <PropertyRef Name="Id" />
           </Key>
-          <Property Name="CarID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Licenseplate" Type="Int32" Nullable="false" />
-          <Property Name="RouteNr" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Licenseplate" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="RouteNo" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
           <Property Name="Hauler" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
           <Property Name="Status" Type="Int32" Nullable="false" />
           <NavigationProperty Name="registration" Relationship="Self.registration_ibfk_1" FromRole="car" ToRole="registration" />
         </EntityType>
         <EntityType Name="employee">
           <Key>
-            <PropertyRef Name="EmployeeID" />
+            <PropertyRef Name="Id" />
           </Key>
-          <Property Name="EmployeeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="EmployeeNumber" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="EmployeeName" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EmpNo" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Name="Admin" Type="Boolean" />
           <NavigationProperty Name="registration" Relationship="Self.registration_ibfk_2" FromRole="employee" ToRole="registration" />
         </EntityType>
         <EntityType Name="registration">
           <Key>
-            <PropertyRef Name="RegistraionID" />
+            <PropertyRef Name="Id" />
           </Key>
-          <Property Name="RegistraionID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="RegistrationDate" Type="DateTime" />
-          <Property Name="RegistrationComment" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
-          <Property Name="Registraion_carID" Type="Int32" Nullable="false" />
-          <Property Name="Registraion_employeeID" Type="Int32" Nullable="false" />
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Date" Type="DateTime" />
+          <Property Name="Comment" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="CarId" Type="Int32" Nullable="false" />
+          <Property Name="EmployeeId" Type="Int32" Nullable="false" />
           <NavigationProperty Name="car" Relationship="Self.registration_ibfk_1" FromRole="registration" ToRole="car" />
           <NavigationProperty Name="employee" Relationship="Self.registration_ibfk_2" FromRole="registration" ToRole="employee" />
         </EntityType>
@@ -114,10 +116,10 @@
           <End Role="registration" Type="Self.registration" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="car">
-              <PropertyRef Name="CarID" />
+              <PropertyRef Name="Id" />
             </Principal>
             <Dependent Role="registration">
-              <PropertyRef Name="Registraion_carID" />
+              <PropertyRef Name="CarId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -126,14 +128,14 @@
           <End Role="registration" Type="Self.registration" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="employee">
-              <PropertyRef Name="EmployeeID" />
+              <PropertyRef Name="Id" />
             </Principal>
             <Dependent Role="registration">
-              <PropertyRef Name="Registraion_employeeID" />
+              <PropertyRef Name="EmployeeId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="glsoverviewdbEntities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="glsoverviewdbEntities1" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="car" EntityType="Self.car" />
           <EntitySet Name="employee" EntityType="Self.employee" />
           <EntitySet Name="registration" EntityType="Self.registration" />
@@ -151,13 +153,13 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="glsoverviewdbModelStoreContainer" CdmEntityContainer="glsoverviewdbEntities">
+        <EntityContainerMapping StorageEntityContainer="glsoverviewdbModelStoreContainer" CdmEntityContainer="glsoverviewdbEntities1">
           <EntitySetMapping Name="car">
             <EntityTypeMapping TypeName="glsoverviewdbModel.car">
               <MappingFragment StoreEntitySet="car">
-                <ScalarProperty Name="CarID" ColumnName="CarID" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Licenseplate" ColumnName="Licenseplate" />
-                <ScalarProperty Name="RouteNr" ColumnName="RouteNr" />
+                <ScalarProperty Name="RouteNo" ColumnName="RouteNo" />
                 <ScalarProperty Name="Hauler" ColumnName="Hauler" />
                 <ScalarProperty Name="Status" ColumnName="Status" />
               </MappingFragment>
@@ -166,9 +168,10 @@
           <EntitySetMapping Name="employee">
             <EntityTypeMapping TypeName="glsoverviewdbModel.employee">
               <MappingFragment StoreEntitySet="employee">
-                <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
-                <ScalarProperty Name="EmployeeNumber" ColumnName="EmployeeNumber" />
-                <ScalarProperty Name="EmployeeName" ColumnName="EmployeeName" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="EmpNo" ColumnName="EmpNo" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
                 <ScalarProperty Name="Admin" ColumnName="Admin" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -176,11 +179,11 @@
           <EntitySetMapping Name="registration">
             <EntityTypeMapping TypeName="glsoverviewdbModel.registration">
               <MappingFragment StoreEntitySet="registration">
-                <ScalarProperty Name="RegistraionID" ColumnName="RegistraionID" />
-                <ScalarProperty Name="RegistrationDate" ColumnName="RegistrationDate" />
-                <ScalarProperty Name="RegistrationComment" ColumnName="RegistrationComment" />
-                <ScalarProperty Name="Registraion_carID" ColumnName="Registraion_carID" />
-                <ScalarProperty Name="Registraion_employeeID" ColumnName="Registraion_employeeID" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="Comment" ColumnName="Comment" />
+                <ScalarProperty Name="CarId" ColumnName="CarId" />
+                <ScalarProperty Name="EmployeeId" ColumnName="EmployeeId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
