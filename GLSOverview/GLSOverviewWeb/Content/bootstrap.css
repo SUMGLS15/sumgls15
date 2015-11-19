@@ -3261,17 +3261,17 @@ fieldset[disabled] .btn-success.active {
 }
 .btn-info {
   color: #ffffff;
-  background-color: #172154;
+  background-color: #58629a;
   border-color: #121940;
 }
 .btn-info:focus,
 .btn-info.focus {
   color: #ffffff;
-  background-color: #0c112c;
+  background-color: #172156;
   border-color: #000000;
 }
 .btn-info:hover {
-  color: #ffffff;
+  color: #fbbe01;
   background-color: #0c112c;
   border-color: #040610;
 }
