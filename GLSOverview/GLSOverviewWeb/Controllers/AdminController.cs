@@ -8,32 +8,11 @@ namespace GLSOverviewWeb.Controllers
 {
     public class AdminController : Controller
     {
-        private glsoverviewdbEntities1 db = new glsoverviewdbEntities1();
+        private glsoverviewdbEntities db = new glsoverviewdbEntities();
         // GET: Admin
-        public ActionResult Index()
+        public ActionResult Index(employee emp)
         {
-            return View();
-        }
-
-        [HttpPost]
-        public ActionResult Index(employee emp) {
-            try {
-                Session["UserAdmin"] = emp.EmpNo;
-            }
-            catch (Exception e) {
-                Console.WriteLine(e);
-            }
-
-            string userSession = (string)Session["UserAdmin"];
-            employee login = (employee)(from e in db.employee
-                                        where e.EmpNo == emp.EmpNo
-                                        select e).FirstOrDefault();
-            if (login != null && login.Admin == true) {
-                
-            }
-            else {
-                return View();
-            }
+            return View(emp);
         }
     }
 }
