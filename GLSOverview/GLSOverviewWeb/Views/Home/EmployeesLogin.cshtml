@@ -1,18 +1,16 @@
-﻿@model IEnumerable<GLSOverviewWeb.employee>
-
-@using GLSOverviewWeb.Controllers
+﻿@model GLSOverviewWeb.Viewmodels.RegistrationModel
 
 @{
-    ViewBag.Title = "Oversigt";
-    car car = ViewBag.Car;
+    ViewBag.Title = "Overview";
+
 }
 
-<h3>Car:  @car.Licenseplate</h3>
+<h3>Car:  @Model.CarID</h3>
 <table class="table table-striped">
 
-    @foreach (var item in Model)
+    @foreach (var item in Model.Employees)
     {
-        <tr onclick="document.location = '@Url.Action("RegisterCarCheked", new { id = item.Id })'">
+        <tr onclick="document.location = '@Url.Action("RegisterCarChecked", new { EmployeeID = item.Id, CarID = Model.CarID})'">
             <td style="text-align: center">
                 <h4> @Html.DisplayFor(modelItem => item.Name)</h4>
             </td>

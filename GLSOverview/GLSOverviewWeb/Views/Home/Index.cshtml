@@ -1,4 +1,4 @@
-﻿@model IEnumerable<GLSOverviewWeb.car>
+﻿@model GLSOverviewWeb.Viewmodels.RegistrationModel
 
 @using GLSOverviewWeb.Controllers
 
@@ -21,11 +21,11 @@
             <h4> @Html.DisplayNameFor(model => model.RouteNo)</h4>
         </th>
     </tr>
-    @foreach (var item in Model)
+    @foreach (var item in Model.Cars)
     {
         if (item.Status == (int)StatusTypes.Home)
         {
-            <tr onclick="document.location = '@Url.Action("employeesLogin", new { id = item.Id })'">
+            <tr onclick="document.location = '@Url.Action("employeesLogin", new { CarID = item.Id })'">
                 <td>
                     <h4> @Html.DisplayFor(modelItem => item.Licenseplate)</h4>
                 </td>
@@ -53,7 +53,7 @@
             @Html.DisplayNameFor(model => model.RouteNo)
         </th>
     </tr>
-    @foreach (var item in Model)
+    @foreach (var item in Model.Cars)
     {
         if (item.Status == (int)StatusTypes.Out)
         {
@@ -86,7 +86,7 @@
             @Html.DisplayNameFor(model => model.RouteNo)
         </th>
     </tr>
-    @foreach (var item in Model)
+    @foreach (var item in Model.Cars)
     {
         if (item.Status == (int)StatusTypes.Delivered)
         {
