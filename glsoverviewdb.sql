@@ -30,7 +30,7 @@ CREATE TABLE IF NOT EXISTS `Employee` (
   `EmpNo` VARCHAR(10) NOT NULL,
   `Name` VARCHAR(45) NOT NULL,
   `Password` varchar(20),
-  `Admin` TINYINT(1) NULL DEFAULT 0
+  `Admin` TINYINT(1) NOT NULL DEFAULT 0
 );
 
 -- -----------------------------------------------------
