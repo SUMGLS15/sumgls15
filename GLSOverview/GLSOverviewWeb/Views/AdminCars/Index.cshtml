@@ -1,0 +1,38 @@
+﻿@model IEnumerable<GLSOverviewWeb.car>
+
+@{
+    ViewBag.Title = "Admin Cars";
+}
+
+<h2>Edit Cars</h2>
+
+<table class="table table-striped">
+    <tr>
+        <th>
+            <h4> @Html.DisplayNameFor(model => model.Licenseplate)</h4>
+        </th>
+        <th>
+            <h4> @Html.DisplayNameFor(model => model.Hauler)</h4>
+        </th>
+        <th>
+            <h4> @Html.DisplayNameFor(model => model.RouteNo)</h4>
+        </th>
+    </tr>
+
+    @foreach (var car in Model)
+    {
+        <tr onclick="document.location = '@Url.Action("Edit", new { id = car.Id })'">
+            <td>
+                @Html.DisplayFor(modelItem => car.Licenseplate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => car.Hauler)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => car.RouteNo)
+            </td>
+        </tr>
+    }
+
+</table>
+

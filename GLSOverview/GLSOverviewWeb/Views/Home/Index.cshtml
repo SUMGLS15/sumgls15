@@ -1,6 +1,110 @@
-﻿
+﻿@model IEnumerable<GLSOverviewWeb.car>
+
+@using GLSOverviewWeb.Controllers
+
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Overview";
 }
 
-<h2>Index</h2>
+<h2>Overview</h2>
+
+<h3>Home</h3>
+<table class="table table-striped">
+    <tr>
+        <th>
+            <h4> @Html.DisplayNameFor(model => model.Licenseplate)</h4>
+        </th>
+        <th>
+            <h4> @Html.DisplayNameFor(model => model.Hauler)</h4>
+        </th>
+        <th>
+            <h4> @Html.DisplayNameFor(model => model.RouteNo)</h4>
+        </th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        if (item.Status == (int)StatusTypes.Home)
+        {
+            <tr onclick="document.location = '@Url.Action("employeesLogin", new { id = item.Id })'">
+                <td>
+                    <h4> @Html.DisplayFor(modelItem => item.Licenseplate)</h4>
+                </td>
+                <td>
+                    <h4> @Html.DisplayFor(modelitem => item.Hauler) </h4>
+                </td>
+                <td>
+                    <h4> @Html.DisplayFor(modelItem => item.RouteNo)</h4>
+                </td>
+            </tr>
+        }
+    }
+</table>
+<br />
+<h3>Out</h3>
+<table class="table table-striped">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Licenseplate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Hauler)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.RouteNo)
+        </th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        if (item.Status == (int)StatusTypes.Out)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Licenseplate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Hauler)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.RouteNo)
+                </td>
+            </tr>
+        }
+    }
+</table>
+
+<br />
+<h3>Delivered</h3>
+<table class="table table-striped">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Licenseplate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Hauler)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.RouteNo)
+        </th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        if (item.Status == (int)StatusTypes.Delivered)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Licenseplate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Hauler)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.RouteNo)
+                </td>
+            </tr>
+        }
+    }
+</table>
+
+
+
+

@@ -13,10 +13,10 @@ namespace GLSOverviewWeb
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class glsoverviewdbEntities1 : DbContext
+    public partial class glsoverviewdbEntities : DbContext
     {
-        public glsoverviewdbEntities1()
-            : base("name=glsoverviewdbEntities1")
+        public glsoverviewdbEntities()
+            : base("name=glsoverviewdbEntities")
         {
         }
     
@@ -25,8 +25,8 @@ namespace GLSOverviewWeb
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<car> car { get; set; }
-        public virtual DbSet<employee> employee { get; set; }
-        public virtual DbSet<registration> registration { get; set; }
+        public virtual DbSet<car> cars { get; set; }
+        public virtual DbSet<employee> employees { get; set; }
+        public virtual DbSet<registration> registrations { get; set; }
     }
 }
