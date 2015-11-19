@@ -10,9 +10,10 @@ namespace GLSOverviewWeb.Controllers
     {
         private glsoverviewdbEntities db = new glsoverviewdbEntities();
         // GET: Admin
-        public ActionResult Index(employee emp)
+        public ActionResult Index()
         {
-            return View(emp);
+            employee emp = (employee)TempData["adminUser"];
+            return View("~/Views/Admin/Index.cshtml",emp);
         }
     }
 }
