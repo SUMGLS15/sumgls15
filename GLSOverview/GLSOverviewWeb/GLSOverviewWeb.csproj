@@ -142,6 +142,7 @@
     <Compile Include="car.cs">
       <DependentUpon>DbModels.tt</DependentUpon>
     </Compile>
+    <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="DbModels.Context.cs">
       <AutoGen>True</AutoGen>
@@ -186,6 +187,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
+    <Folder Include="Views\Admin\" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
