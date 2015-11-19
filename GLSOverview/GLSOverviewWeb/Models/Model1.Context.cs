@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace GLSOverviewWeb
+namespace GLSOverviewWeb.Models
 {
     using System;
     using System.Data.Entity;
