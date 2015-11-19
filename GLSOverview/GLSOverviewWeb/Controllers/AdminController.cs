@@ -12,8 +12,16 @@ namespace GLSOverviewWeb.Controllers
         // GET: Admin
         public ActionResult Index()
         {
-            employee emp = (employee)TempData["adminUser"];
-            return View("~/Views/Admin/Index.cshtml",emp);
+            if (EnsureAdmin() == true) {
+                return View("~/Views/Admin/Index.cshtml");
+            }
+            else
+                return RedirectToAction("Index", "Login");
+        }
+
+        private bool? EnsureAdmin() {
+            employee emp = (employee)Session["UserAdmin"];
+            return emp.Admin;
         }
     }
 }
