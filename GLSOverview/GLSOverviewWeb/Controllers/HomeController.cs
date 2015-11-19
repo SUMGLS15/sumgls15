@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 using System.Web.UI.WebControls;
+using GLSOverviewWeb.Viewmodels;
 
 namespace GLSOverviewWeb.Controllers
 {
@@ -15,23 +16,23 @@ namespace GLSOverviewWeb.Controllers
     {
         private glsoverviewdbEntities _db = new glsoverviewdbEntities();
 
-        private car selectedCar = null;
-        private employee selecedEmployee = null;
-        private registration newRegistration = null;
-
-        // GET: Home
+        [HttpGet]
         public ActionResult Index()
         {
-            using (_db)
-            {   
-                var cars = _db.cars.ToList();
-                return View(cars);
-            }
+            RegistrationModel RM = new RegistrationModel();
+
+            //using (_db)
+            //{   
+                RM.Cars = _db.cars.ToList();
+                return View(RM);
+            //}
         }
 
-        public ActionResult EmployeesLogin(int id)
+        [HttpGet]
+        public ActionResult EmployeesLogin(RegistrationModel RM)
         {
-            selectedCar = _db.cars.Find(id);
+
+           
 
             using (_db)
             {
@@ -43,15 +44,35 @@ namespace GLSOverviewWeb.Controllers
                 {
                     resList.Add(emp);
                 }
-                ViewBag.Car = selectedCar;
-                return View(resList);
+
+                RM.Employees = resList;
+
+                return View(RM);
             }
         }
 
-        public ActionResult RegisterCarChecked(int id)
+        [HttpGet]
+        public ActionResult RegisterCarChecked(RegistrationModel RM)
         {
-            selecedEmployee = _db.employees.Find(id);
-            return View();
+           return View(RM);
+        }
+
+        [HttpPost, ActionName("RegisterCarChecked")]
+        public ActionResult PostRegisterCarChecked(RegistrationModel RM)
+        {
+            registration reg = new registration();
+            reg.CarId = RM.CarID;
+            reg.EmployeeId = RM.EmployeeID;
+            reg.Date = DateTime.Now;
+            reg.Comment = RM.Comment;
+            _db.registrations.Add(reg);
+
+            car car = _db.cars.Find(RM.CarID);
+            car.Status = (int) StatusTypes.Delivered;
+
+            _db.SaveChanges();
+
+            return RedirectToAction("Index","Home");
         }
     }
 }
