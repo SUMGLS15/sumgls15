@@ -1,0 +1,30 @@
+﻿@model GLSOverviewWeb.employee
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+    <h2>Login Page:</h2>
+    <div>
+        @using (Html.BeginForm()) {
+
+            <table>
+                <tr>
+                    <td>@Html.LabelFor(model => model.EmpNo)</td>
+                    <td>@Html.TextBoxFor(model => model.EmpNo)</td>
+                </tr>
+                <tr>
+                    <td>@Html.LabelFor(model => model.Password)</td>
+                    <td>@Html.PasswordFor(model => model.Password)</td>
+                </tr>
+            </table>
+            <input type="submit" value="Login" />
+        }
+    </div>
+</body>
+</html>

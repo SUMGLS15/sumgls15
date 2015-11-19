@@ -10,9 +10,18 @@ namespace GLSOverviewWeb.Controllers
     {
         private glsoverviewdbEntities db = new glsoverviewdbEntities();
         // GET: Admin
-        public ActionResult Index(employee emp)
+        public ActionResult Index()
         {
-            return View(emp);
+            if (EnsureAdmin() == true) {
+                return View("~/Views/Admin/Index.cshtml");
+            }
+            else
+                return RedirectToAction("Index", "Login");
+        }
+
+        private bool? EnsureAdmin() {
+            employee emp = (employee)Session["UserAdmin"];
+            return emp.Admin;
         }
     }
 }

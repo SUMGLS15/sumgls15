@@ -11,27 +11,19 @@ namespace GLSOverviewWeb.Controllers
         private glsoverviewdbEntities db = new glsoverviewdbEntities();
         // GET: Admin
         public ActionResult Index() {
-            return View();
+            return View("~/Views/Login/Index.cshtml");
         }
 
         [HttpPost]
         public ActionResult Index(employee emp) {
-            try {
-                Session["UserAdmin"] = emp.EmpNo;
-            }
-            catch (Exception e) {
-                Console.WriteLine(e);
-            }
-
-            string userSession = (string)Session["UserAdmin"];
             var login = (from e in db.employees
-                                        where e.EmpNo == emp.EmpNo
+                                        where e.EmpNo == emp.EmpNo && e.Password == emp.Password
                                         select e).FirstOrDefault();
             if (login != null && login.Admin == true) {
-                return RedirectToAction("Index", "Admin", emp);
+                login = (employee)Session["UserAdmin"];
+                return RedirectToAction("Index", "Admin");
             }
             else {
-                userSession = null;
                 return View();
             }
         }
