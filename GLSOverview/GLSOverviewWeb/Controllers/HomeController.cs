@@ -10,7 +10,7 @@ using GLSOverviewWeb.Viewmodels;
 
 namespace GLSOverviewWeb.Controllers
 {
-    public enum StatusTypes { Home, Out, Delivered }
+    public enum StatusTypes { Out, Home, Delivered }
 
     public class HomeController : Controller
     {
@@ -31,9 +31,6 @@ namespace GLSOverviewWeb.Controllers
         [HttpGet]
         public ActionResult EmployeesLogin(RegistrationModel RM)
         {
-
-           
-
             using (_db)
             {
                 List<employee> resList = new List<employee>();
@@ -46,7 +43,7 @@ namespace GLSOverviewWeb.Controllers
                 }
 
                 RM.Employees = resList;
-
+                RM.Car = _db.cars.Find(RM.CarID);
                 return View(RM);
             }
         }
@@ -54,6 +51,8 @@ namespace GLSOverviewWeb.Controllers
         [HttpGet]
         public ActionResult RegisterCarChecked(RegistrationModel RM)
         {
+            RM.Car = _db.cars.Find(RM.CarID);
+            RM.Employee = _db.employees.Find(RM.EmployeeID);
            return View(RM);
         }
 

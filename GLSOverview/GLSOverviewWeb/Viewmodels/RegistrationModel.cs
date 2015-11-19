@@ -7,7 +7,12 @@ namespace GLSOverviewWeb.Viewmodels
 {
     public class RegistrationModel {
         public int CarID { get; set; }
+
+        public car Car { get; set; }
+
         public int EmployeeID { get; set; }
+
+        public employee Employee { get; set; }
 
         public string Licenseplate { get; set; }
         public string RouteNo { get; set; }

@@ -1,4 +1,5 @@
-﻿USE glsoverviewdb;
+USE glsoverviewdb;
+
 DROP TABLE IF EXISTS `Registration`;
 DROP TABLE IF EXISTS `Car`;
 DROP TABLE IF EXISTS `Employee`;
@@ -16,7 +17,8 @@ CREATE TABLE IF NOT EXISTS `Car` (
   `Licenseplate` VARCHAR(20) NOT NULL,
   `RouteNo` VARCHAR(45) NULL,
   `Hauler` VARCHAR(45) NULL,
-  `Status` INT NOT NULL
+  `Status` INT NOT NULL,
+  `PortNo` INT NOT NULL DEFAULT -1
 );
 
 -- -----------------------------------------------------
