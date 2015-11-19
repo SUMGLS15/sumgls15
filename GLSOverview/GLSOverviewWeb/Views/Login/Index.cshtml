@@ -16,11 +16,11 @@
             <table>
                 <tr>
                     <td>@Html.LabelFor(model => model.EmpNo)</td>
-                    <td>@Html.TextBoxFor(model => model.EmpNo)</td>
+                    <td>@Html.TextBoxFor(model => model.EmpNo, new { @class = "form-control" })</td>
                 </tr>
                 <tr>
                     <td>@Html.LabelFor(model => model.Password)</td>
-                    <td>@Html.PasswordFor(model => model.Password)</td>
+                    <td>@Html.PasswordFor(model => model.Password, new { @class = "form-control" })</td>
                 </tr>
             </table>
             <input type="submit" value="Login" />
