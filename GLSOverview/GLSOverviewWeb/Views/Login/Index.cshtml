@@ -11,12 +11,18 @@
 <body>
     <h2>Login Page:</h2>
     <div>
-        @using (Html.BeginForm("Index", "Login")) {
+        @using (Html.BeginForm("Index", "Login"))
+        {
 
             <table>
                 <tr>
                     <td>@Html.LabelFor(model => model.EmpNo)</td>
-                    <td>@Html.TextBoxFor(model => model.EmpNo, new { @class = "form-control" })</td>
+                    <td>@Html.TextBoxFor(model => model.EmpNo, new
+                        {
+                            @class = "form-control", 
+                            @autofocus = "on", 
+                            @autocomplete = "off"
+                        })</td>
                 </tr>
                 <tr>
                     <td>@Html.LabelFor(model => model.Password)</td>

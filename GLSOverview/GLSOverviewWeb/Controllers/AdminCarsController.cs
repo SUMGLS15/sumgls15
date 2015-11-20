@@ -11,12 +11,12 @@ namespace GLSOverviewWeb.Controllers
     {
         private glsoverviewdbEntities _db = new glsoverviewdbEntities();
 
-        // GET: AdminSK
         public ActionResult Index()
         {
-            EnsureAdmin();
+            if (!LoginController.IsAdmin())
+                return View("~/Views/Login/Index.cshtml");
 
-            using (_db)
+            using (var _db = new glsoverviewdbEntities())
             {
                 var cars = _db.cars.ToList();
                 return View(cars);
@@ -25,10 +25,11 @@ namespace GLSOverviewWeb.Controllers
 
         public ActionResult Edit(int? id)
         {
-            if (id == null)
-                return RedirectToAction("Index");
+            if (!LoginController.IsAdmin())
+                return View("~/Views/Login/Index.cshtml");
 
-            EnsureAdmin();
+            if (id == null)
+                return RedirectToAction("Index"); // TODO msg?
 
             using (_db)
             {
@@ -41,11 +42,12 @@ namespace GLSOverviewWeb.Controllers
         [HttpPost]
         public ActionResult Edit(car formCar)
         {
-            EnsureAdmin();
+            if (!LoginController.IsAdmin())
+                return View("~/Views/Login/Index.cshtml");
 
             using (_db)
             {
-                car car = _db.cars.FirstOrDefault(c => c.Id == formCar.Id );
+                car car = _db.cars.FirstOrDefault(c => c.Id == formCar.Id);
 
                 car.Hauler = formCar.Hauler;
                 car.Licenseplate = formCar.Licenseplate;
@@ -56,16 +58,8 @@ namespace GLSOverviewWeb.Controllers
                 return RedirectToAction("Index", new { succes = 1 });
             }
 
-            
+
         }
 
-
-        private void EnsureAdmin()
-        {
-            // Check if logged in as admin
-            // If not, redirect to login page
-
-            // for now, does nothing.
-        }
     }
 }
