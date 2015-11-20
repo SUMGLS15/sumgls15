@@ -7,46 +7,51 @@
     <title>@ViewBag.Title - GLS Overview</title>
     <link href="~/Content/bootstrap.css" rel="stylesheet" type="text/css" />
     <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
-    <script src="~/Scripts/modernizr-2.6.2.js"></script>
-    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
-    <script src="~/Scripts/bootstrap.min.js"></script>
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top" id="top-menu" style="background-color: #172154">
-        <div class="container">
-            <div class="navbar-header">
-                
-                <img src="~/Content/logo.jpg" width="94" class="navbar-brand"/>
+<div class="navbar navbar-inverse navbar-fixed-top" id="top-menu" style="background-color: #172154">
+    <div class="container">
+        <div class="navbar-header">
 
-                @Html.ActionLink("Overview", "Index", "Home", new {area = ""}, new {@class = "navbar-brand"})
+            <img src="~/Content/logo.jpg" width="94" class="navbar-brand"/>
 
-                <div class="navbar-right">
-                    @Html.ActionLink("Admin", "Index", "Admin", new {area = ""}, new {@class = "navbar-brand"})
+            @Html.ActionLink("Overview", "Index", "Home", new {area = ""}, new {@class = "navbar-brand"})
 
-                    @if (LoginController.IsLoggedIn())
-                    {
-                        @Html.ActionLink("Logout", "Logout", "Login", new {area = ""}, new {@class = "navbar-brand"})
-                    }
-                </div>
+            <div class="navbar-right">
+                @Html.ActionLink("Admin", "Index", "Admin", new {area = ""}, new {@class = "navbar-brand"})
 
-                @*<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                @if (LoginController.IsLoggedIn()) {
+                    @Html.ActionLink("Logout", "Logout", "Login", new {area = ""}, new {@class = "navbar-brand"})
+                }
+            </div>
+
+            @*<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>*@
-            </div>
-            @*<div class="navbar-collapse collapse">
+        </div>
+        @*<div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav"></ul>
                 </div>*@
-        </div>
     </div>
+</div>
 
-    <div class="container body-content">
-        @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - GLS Overview</p>
-        </footer>
-    </div>
+<div class="container body-content">
+    @RenderBody()
+    <hr/>
+    <footer>
+        <p>&copy; @DateTime.Now.Year - GLS Overview</p>
+    </footer>
+</div>
+    <script src="~/Scripts/modernizr-2.6.2.js"></script>
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+<script src="~/Scripts/GLSScript.js"></script>
+
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
 </body>
+
+
 </html>
