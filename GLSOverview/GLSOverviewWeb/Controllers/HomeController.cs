@@ -23,7 +23,7 @@ namespace GLSOverviewWeb.Controllers
 
             //using (_db)
             //{   
-                RM.Cars = _db.cars.ToList();
+            RM.Cars = _db.cars.ToList();
                 return View(RM);
             //}
         }
