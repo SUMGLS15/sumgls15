@@ -25,9 +25,9 @@ namespace GLSOverviewWeb.Controllers
 
         [HttpGet]
         public ActionResult Create() {
-            if (!LoginController.IsAdmin()) {
+            if (!LoginController.IsAdmin()) 
                 return View("~/Views/Login/Index.cshtml");
-            }
+            
             return View();
         }
 
@@ -35,10 +35,12 @@ namespace GLSOverviewWeb.Controllers
         public ActionResult Create(car car) {
             if (!LoginController.IsAdmin())
                 return View("~/Views/Login/Index.cshtml");
+
             using (_db) {
                 _db.cars.Add(car);
                 _db.SaveChanges();
             }
+
             return RedirectToAction("Index");
         }
 
@@ -91,20 +93,20 @@ namespace GLSOverviewWeb.Controllers
                 car car = _db.cars.Find(id);
                 return View(car);
             }
-
         }
 
         [HttpPost, ActionName("Delete")]
         public ActionResult PostDelete(int id) {
             if (!LoginController.IsAdmin())
                 return View("~/Views/Login/Index.cshtml");
+
             using (_db) {
                 car car = _db.cars.Find(id);
                 _db.cars.Remove(car);
                 _db.SaveChanges();
             }
+
             return RedirectToAction("Index");
         }
-
     }
 }
