@@ -25,10 +25,11 @@ namespace GLSOverviewWeb.Controllers
 
         public ActionResult Edit(int? id)
         {
+            if (!LoginController.IsAdmin())
+                return View("~/Views/Login/Index.cshtml");
+
             if (id == null)
                 return RedirectToAction("Index"); // TODO msg?
-
-            //EnsureAdmin();
 
             using (_db)
             {
@@ -41,7 +42,8 @@ namespace GLSOverviewWeb.Controllers
         [HttpPost]
         public ActionResult Edit(car formCar)
         {
-            //EnsureAdmin();
+            if (!LoginController.IsAdmin())
+                return View("~/Views/Login/Index.cshtml");
 
             using (_db)
             {
