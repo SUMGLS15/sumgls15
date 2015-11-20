@@ -5,7 +5,9 @@
 }
 
 <h2>Edit Cars</h2>
-
+<a>
+    <input class="btn btn-primary active" type="button" value="New Car" onclick="location.href='@Url.Action("Create", "AdminCars")'" />
+</a>
 <table class="table table-striped">
     <tr>
         <th>
@@ -17,11 +19,14 @@
         <th>
             <h4> @Html.DisplayNameFor(model => model.RouteNo)</h4>
         </th>
+        <th>
+            <h4>Actions: </h4>
+        </th>
     </tr>
 
     @foreach (var car in Model)
     {
-        <tr onclick="document.location = '@Url.Action("Edit", new { id = car.Id })'">
+        <tr>
             <td>
                 @Html.DisplayFor(modelItem => car.Licenseplate)
             </td>
@@ -30,6 +35,9 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => car.RouteNo)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = car.Id }, new { @class = "btn btn-info btn-xs" }) | @Html.ActionLink("Delete", "Delete", new { id = car.Id }, new { @class = "btn btn-info btn-xs" })
             </td>
         </tr>
     }
