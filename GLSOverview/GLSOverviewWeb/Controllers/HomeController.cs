@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 using System.Web.UI.WebControls;
+using GLSOverviewWeb.Models;
 using GLSOverviewWeb.Viewmodels;
 
 namespace GLSOverviewWeb.Controllers

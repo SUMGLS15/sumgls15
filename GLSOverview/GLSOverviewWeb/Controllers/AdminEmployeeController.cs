@@ -4,6 +4,7 @@ using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using GLSOverviewWeb.Models;
 
 namespace GLSOverviewWeb.Controllers {
     public class AdminEmployeeController : Controller {
