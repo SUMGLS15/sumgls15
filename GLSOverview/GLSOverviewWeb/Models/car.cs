@@ -11,7 +11,8 @@ namespace GLSOverviewWeb.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel;
+
     public partial class car
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -21,10 +22,13 @@ namespace GLSOverviewWeb.Models
         }
     
         public int Id { get; set; }
+        [DisplayName("License Plate:")]
         public string Licenseplate { get; set; }
+        [DisplayName("Route Number:")]
         public string RouteNo { get; set; }
         public string Hauler { get; set; }
         public int Status { get; set; }
+        [DisplayName("Port Number:")]
         public int PortNo { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
