@@ -40,7 +40,11 @@ namespace GLSOverviewWeb.Controllers
 
 
 
-
+        public bool isAdmin()
+        {
+            var emp = CurrentUser();
+            return true;
+        }
 
 
         /*
@@ -57,11 +61,12 @@ namespace GLSOverviewWeb.Controllers
             if (emp == null || !emp.Admin)
                 RedirectToAction("Index", "Login");
         }
+        */
 
         public employee CurrentUser()
         {
             return (employee)Session["UserAdmin"];
         }
-        */
+        
     }
 }
