@@ -18,18 +18,18 @@ namespace GLSOverviewWeb.Controllers
         }
 
         [HttpPost]
-        public ActionResult Index(employee emp)
+        public ActionResult Index(employee employee)
         {
             var login = _db.employees
-                           .FirstOrDefault(e => e.EmpNo == emp.EmpNo &&
-                                                e.Password == emp.Password);
+                           .FirstOrDefault(e => e.EmpNo == employee.EmpNo &&
+                                                e.Password == employee.Password);
             if (login == null)
                 return View(); // TODO Msg: Bad login
 
-            Session["User"] = login;
+            Session["User"] = login; // Gad vide om en hacker kan hente sessionen ud og lægge sessionen ind senere?
 
             return RedirectToAction("Index", "Admin");
-            // TODO Kunne være rart at lave noget "redirect to hvor du kom fra"
+            // TODO Kunne være rart at lave noget "redirect til hvor du kom fra"
         }
 
         public static bool IsLoggedIn()

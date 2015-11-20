@@ -1,13 +1,16 @@
 ﻿@model IEnumerable<GLSOverviewWeb.Models.car>
 
 @{
-    ViewBag.Title = "Admin Cars";
+    ViewBag.Title = "Administrate cars";
 }
 
-<h2>Edit Cars</h2>
+<h2>Administrate cars</h2>
+
 <a>
-    <input class="btn btn-primary active" type="button" value="New Car" onclick="location.href='@Url.Action("Create", "AdminCars")'" />
+    <input class="btn btn-primary active" type="button" value="New Car" 
+           onclick="location.href = '@Url.Action("Create", "AdminCars")'"/>
 </a>
+
 <table class="table table-striped">
     <tr>
         <th>
@@ -37,7 +40,8 @@
                 @Html.DisplayFor(modelItem => car.RouteNo)
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new { id = car.Id }, new { @class = "btn btn-info btn-xs" }) | @Html.ActionLink("Delete", "Delete", new { id = car.Id }, new { @class = "btn btn-info btn-xs" })
+                @Html.ActionLink("Edit", "Edit", new {id = car.Id}, new {@class = "btn btn-info btn-xs"}) | 
+                @Html.ActionLink("Delete", "Delete", new { id = car.Id }, new { @class = "btn btn-info btn-xs" })
             </td>
         </tr>
     }

@@ -10,13 +10,13 @@ namespace GLSOverviewWeb.Controllers
     public class AdminController : Controller
     {
         private glsoverviewdbEntities db = new glsoverviewdbEntities();
-        // GET: Admin
+
         public ActionResult Index()
         {
             if (!LoginController.IsAdmin())
                 return View("~/Views/Login/Index.cshtml");
-            
-            return View();
+
+            return View(LoginController.CurrentUser());
         }
 
 
