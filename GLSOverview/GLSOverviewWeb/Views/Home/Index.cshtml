@@ -9,35 +9,42 @@
 <h2>Overview</h2>
 
 <h3><span class="label label-success">Home<img src="~/Content/home.png" /></span></h3>
+<div class="input-group">
+    <input class="form-control" id="filter" type="text">
+</div>
 <table class="table table-striped">
+    ´<thead>
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.Licenseplate)
         </th>
         <th>
-             @Html.DisplayNameFor(model => model.Hauler)
+            @Html.DisplayNameFor(model => model.Hauler)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.RouteNo)
         </th>
     </tr>
-    @foreach (var item in Model.Cars)
-    {
-        if (item.Status == (int)StatusTypes.Home)
+    </thead>
+    <tbody class="searchable">
+        @foreach (var item in Model.Cars)
         {
-            <tr onclick="document.location = '@Url.Action("employeesLogin", new { CarID = item.Id })'">
-                <td>
-                    <h4> @Html.DisplayFor(modelItem => item.Licenseplate)</h4>
-                </td>
-                <td>
-                    <h4> @Html.DisplayFor(modelitem => item.Hauler) </h4>
-                </td>
-                <td>
-                    <h4> @Html.DisplayFor(modelItem => item.RouteNo)</h4>
-                </td>
-            </tr>
+            if (item.Status == (int)StatusTypes.Home)
+            {
+                <tr onclick="document.location = '@Url.Action("employeesLogin", new {CarID = item.Id})'">
+                    <td>
+                        <h4> @Html.DisplayFor(modelItem => item.Licenseplate)</h4>
+                    </td>
+                    <td>
+                        <h4> @Html.DisplayFor(modelitem => item.Hauler) </h4>
+                    </td>
+                    <td>
+                        <h4> @Html.DisplayFor(modelItem => item.RouteNo)</h4>
+                    </td>
+                </tr>
+            }
         }
-    }
+    </tbody>
 </table>
 <br />
 <h3><span class="label label-danger">Out<img src="~/Content/out.png" /></span></h3>
@@ -105,6 +112,22 @@
     }
 </table>
 
+<script>
+$(document).ready(function () {
 
+    (function ($) {
 
+        $('#filter').keyup(function () {
 
+            var rex = new RegExp($(this).val(), 'i');
+            $('.searchable tr').hide();
+            $('.searchable tr').filter(function () {
+                return rex.test($(this).text());
+            }).show();
+
+        })
+
+    }(jQuery));
+
+});
+</script>
