@@ -17,8 +17,7 @@ namespace GLSOverviewWeb.Controllers
         private glsoverviewdbEntities _db = new glsoverviewdbEntities();
 
         [HttpGet]
-        public ActionResult Index()
-        {
+        public ActionResult Index() {
             RegistrationModel RM = new RegistrationModel();
 
             //using (_db)
