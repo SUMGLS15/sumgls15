@@ -54,7 +54,7 @@ namespace GLSOverviewWeb.Controllers
         public ActionResult Logout()
         {
             Session["User"] = null;
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Index", "Admin");
         }
     }
 }
