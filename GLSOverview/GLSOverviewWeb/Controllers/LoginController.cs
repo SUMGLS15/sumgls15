@@ -28,8 +28,7 @@ namespace GLSOverviewWeb.Controllers
 
             Session["User"] = login;
 
-            return View();
-            //return RedirectToAction("Index", "Home");
+            return RedirectToAction("Index", "Admin");
             // TODO Kunne være rart at lave noget "redirect to hvor du kom fra"
         }
 
@@ -54,7 +53,7 @@ namespace GLSOverviewWeb.Controllers
         public ActionResult Logout()
         {
             Session["User"] = null;
-            return RedirectToAction("Index", "Admin");
+            return RedirectToAction("Index", "Home");
         }
     }
 }
