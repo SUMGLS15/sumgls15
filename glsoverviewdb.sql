@@ -50,15 +50,15 @@ CREATE TABLE IF NOT EXISTS `Registration` (
 -- -----------------------------------------------------
 
 INSERT INTO Car (Licenseplate, RouteNo, Hauler, Status) 
-	VALUES ("AA12123", "8000", "Ø", 0);
+	VALUES ("AA 12 123", "8000", "Ø", 0);
 INSERT INTO Car (Licenseplate, RouteNo, Hauler, Status) 
-	VALUES ("BB12123", "9000", "M", 1);
+	VALUES ("BB 12 123", "9000", "M", 1);
 INSERT INTO Car (Licenseplate, RouteNo, Hauler, Status) 
-	VALUES ("CC12123", "8240", "D", 2);
+	VALUES ("CC 12 123", "8240", "D", 2);
 INSERT INTO Car (Licenseplate, RouteNo, Hauler, Status) 
-	VALUES ("DD12123", "8210", "Ø", 0);
+	VALUES ("DD 12 123", "8210", "Ø", 0);
 INSERT INTO Car (Licenseplate, RouteNo, Hauler, Status) 
-	VALUES ("EE12123", "8800", "Ø", 1);
+	VALUES ("EE 12 123", "8800", "Ø", 1);
 
 INSERT INTO Employee (EmpNo, Name, Password, Admin) 
 	VALUES ("123", "Leo Møller", "321", 1);
