@@ -24,7 +24,7 @@ namespace GLSOverviewWeb.Controllers
         }
 
         [HttpGet]
-        public ActionResult Add() {
+        public ActionResult Create() {
             if (!LoginController.IsAdmin()) 
                 return View("~/Views/Login/Index.cshtml");
             
@@ -32,7 +32,7 @@ namespace GLSOverviewWeb.Controllers
         }
 
         [HttpPost]
-        public ActionResult Add(car car) {
+        public ActionResult Create(car car) {
             if (!LoginController.IsAdmin())
                 return View("~/Views/Login/Index.cshtml");
 
