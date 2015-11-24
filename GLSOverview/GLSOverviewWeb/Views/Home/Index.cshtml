@@ -8,7 +8,7 @@
 
 <h2>Overview</h2>
 
-<h3><span class="label label-success">Home<img src="~/Content/home.png" /></span></h3>
+<h3><span class="label label-success">Arrived<img src="~/Content/home.png" /></span></h3>
 <div class="input-group">
     <span class="input-group-addon">Filter</span>
     <input id="filter" type="text" class="form-control" placeholder="Type here...">
@@ -33,7 +33,7 @@
     <tbody class="searchable">
         @foreach (var item in Model.Cars)
         {
-            if (item.Status == (int)StatusTypes.Home)
+            if (item.Status == (int)StatusTypes.Arrived)
             {
                 <tr class="clickable" onclick="document.location = '@Url.Action("employeesLogin", new {CarID = item.Id})'">
                     <td>
@@ -54,7 +54,7 @@
     </tbody>
 </table>
 <br />
-<h3><span class="label label-danger">Out<img src="~/Content/out.png" /></span></h3>
+<h3><span class="label label-danger">Departed<img src="~/Content/out.png" /></span></h3>
 <table class="table table-striped">
     <thead>
         <tr>
@@ -75,7 +75,7 @@
     <tbody>
         @foreach (var item in Model.Cars)
         {
-            if (item.Status == (int)StatusTypes.Out)
+            if (item.Status == (int)StatusTypes.Departed)
             {
                 <tr>
                     <td>
@@ -97,7 +97,7 @@
 </table>
 
 <br />
-<h3><span class="label label-default">Delivered<img src="~/Content/delivered.png" /></span></h3>
+<h3><span class="label label-default">Parked<img src="~/Content/delivered.png" /></span></h3>
 <table class="table table-striped">
     <thead>
         <tr>
@@ -118,7 +118,7 @@
     <tbody>
         @foreach (var item in Model.Cars)
         {
-            if (item.Status == (int)StatusTypes.Delivered)
+            if (item.Status == (int)StatusTypes.Parked)
             {
                 <tr>
                     <td>

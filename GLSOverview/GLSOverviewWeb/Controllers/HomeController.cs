@@ -10,7 +10,7 @@ using GLSOverviewWeb.Models;
 using GLSOverviewWeb.Viewmodels;
 
 namespace GLSOverviewWeb.Controllers {
-    public enum StatusTypes { Out, Home, Delivered }
+    public enum StatusTypes { Departed, Arrived, Parked }
 
     public class HomeController : Controller {
         private glsoverviewdbEntities _db = new glsoverviewdbEntities();
@@ -57,7 +57,7 @@ namespace GLSOverviewWeb.Controllers {
             _db.registrations.Add(reg);
 
             car car = _db.cars.Find(rm.CarID);
-            car.Status = (int)StatusTypes.Delivered;
+            car.Status = (int)StatusTypes.Parked;
 
             _db.SaveChanges();
 
