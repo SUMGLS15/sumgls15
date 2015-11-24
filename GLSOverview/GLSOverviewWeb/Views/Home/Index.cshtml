@@ -32,7 +32,7 @@
         {
             if (item.Status == (int)StatusTypes.Home)
             {
-                <tr onclick="document.location = '@Url.Action("employeesLogin", new {CarID = item.Id})'">
+                <tr class="clickable" onclick="document.location = '@Url.Action("employeesLogin", new {CarID = item.Id})'">
                     <td>
                         <h4> @Html.DisplayFor(modelItem => item.Licenseplate)</h4>
                     </td>
