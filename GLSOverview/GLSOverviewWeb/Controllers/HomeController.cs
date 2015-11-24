@@ -29,16 +29,12 @@ namespace GLSOverviewWeb.Controllers {
         [HttpGet]
         public ActionResult EmployeesLogin(RegistrationModel rm) {
             using (_db) {
-                List<employee> resList = new List<employee>();
-                var top5 = from e in _db.employees
+                var top5 = (from e in _db.employees
                            from r in _db.registrations.Where(x => x.EmployeeId == e.Id).DefaultIfEmpty()
                            orderby r.Date descending
-                           select e;
-                foreach (var emp in top5) {
-                    resList.Add(emp);
-                }
+                           select e).ToList();
 
-                rm.Employees = resList;
+                rm.Employees = top5;
                 rm.Car = _db.cars.Find(rm.CarID);
                 return View(rm);
             }
