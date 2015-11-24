@@ -23,6 +23,9 @@
             <h4> @Html.DisplayNameFor(model => model.RouteNo)</h4>
         </th>
         <th>
+            <h4> @Html.DisplayNameFor(model => model.PortNo)</h4>
+        </th>
+        <th>
             <h4>Actions: </h4>
         </th>
     </tr>
@@ -38,6 +41,9 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => car.RouteNo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => car.PortNo)
             </td>
             <td>
                 @Html.ActionLink("Edit", "Edit", new {id = car.Id}, new {@class = "btn btn-info btn-xs"}) |
