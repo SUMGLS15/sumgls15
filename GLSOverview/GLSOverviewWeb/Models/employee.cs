@@ -11,8 +11,7 @@ namespace GLSOverviewWeb.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel;
-
+    
     public partial class employee
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -22,7 +21,6 @@ namespace GLSOverviewWeb.Models
         }
     
         public int Id { get; set; }
-        [DisplayName("Employe Number:")]
         public string EmpNo { get; set; }
         public string Name { get; set; }
         public string Password { get; set; }
