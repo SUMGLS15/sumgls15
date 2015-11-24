@@ -5,6 +5,7 @@
     ViewBag.Title = "Administration page";
 }
 
+<body>
 <h2>Administration page</h2>
 
 <h3>Welcome back, @Html.DisplayFor(model => model.Name)</h3>
@@ -17,4 +18,20 @@
         @Html.ActionLink("Employee Admin", "Index", "AdminEmployees")
     </li>
 </ul>
+        <div class="container">
+            <div class="hero-unit">
+                <input type="text" placeholder="click to show datepicker" id="example1">
+            </div>
+        </div>
+        <!-- Load jQuery and bootstrap datepicker scripts -->
+        <script type="text/javascript">
+            // When the document is ready
+            $(document).ready(function () {
 
+                $('#example1').datepicker({
+                    format: "dd/mm/yyyy"
+                });
+
+            });
+        </script>
+    </body>

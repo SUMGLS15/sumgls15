@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using GLSOverviewWeb.Models;
+using System.ComponentModel;
 
 namespace GLSOverviewWeb.Viewmodels {
     public class RegistrationModel {
@@ -14,7 +15,9 @@ namespace GLSOverviewWeb.Viewmodels {
 
         public employee Employee { get; set; }
 
+        [DisplayName("License Plate: ")]
         public string Licenseplate { get; set; }
+        [DisplayName("Route: ")]
         public string RouteNo { get; set; }
         public string Hauler { get; set; }
         public string Comment { get; set; }
