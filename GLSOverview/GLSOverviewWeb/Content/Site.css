@@ -19,3 +19,7 @@ textarea {
 tr.clickable {
     cursor: pointer;
 }
+
+.navbar {
+    background-color: #172154; /* GLS Blue background */
+}
