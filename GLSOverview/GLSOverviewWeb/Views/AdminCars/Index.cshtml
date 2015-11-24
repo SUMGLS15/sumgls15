@@ -12,7 +12,7 @@
 </a>
 
 <table class="table table-striped">
-    <tr>
+    <tr >
         <th>
             <h4> @Html.DisplayNameFor(model => model.Licenseplate)</h4>
         </th>
@@ -29,7 +29,7 @@
 
     @foreach (var car in Model)
     {
-        <tr>
+        <tr class="clickable">
             <td>
                 @Html.DisplayFor(modelItem => car.Licenseplate)
             </td>
@@ -40,11 +40,12 @@
                 @Html.DisplayFor(modelItem => car.RouteNo)
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new {id = car.Id}, new {@class = "btn btn-info btn-xs"}) | 
-                @Html.ActionLink("Delete", "Delete", new { id = car.Id }, new { @class = "btn btn-info btn-xs" })
+                @Html.ActionLink("Edit", "Edit", new {id = car.Id}, new {@class = "btn btn-info btn-xs"}) |
+                @Html.ActionLink("Delete", "Delete", new {id = car.Id}, new {@class = "btn btn-info btn-xs"})
             </td>
         </tr>
     }
 
 </table>
+
 
