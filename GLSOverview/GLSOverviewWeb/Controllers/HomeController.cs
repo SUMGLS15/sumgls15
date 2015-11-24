@@ -9,12 +9,10 @@ using System.Web.UI.WebControls;
 using GLSOverviewWeb.Models;
 using GLSOverviewWeb.Viewmodels;
 
-namespace GLSOverviewWeb.Controllers
-{
+namespace GLSOverviewWeb.Controllers {
     public enum StatusTypes { Out, Home, Delivered }
 
-    public class HomeController : Controller
-    {
+    public class HomeController : Controller {
         private glsoverviewdbEntities _db = new glsoverviewdbEntities();
 
         [HttpGet]
@@ -24,63 +22,50 @@ namespace GLSOverviewWeb.Controllers
             //using (_db)
             //{   
             RM.Cars = _db.cars.ToList();
-                return View(RM);
+            return View(RM);
             //}
         }
 
         [HttpGet]
-        public ActionResult EmployeesLogin(RegistrationModel RM)
-        {
-            using (_db)
-            {
+        public ActionResult EmployeesLogin(RegistrationModel rm) {
+            using (_db) {
                 List<employee> resList = new List<employee>();
-                var query = from e in _db.employees
-                            orderby e.Name ascending 
-                            select e;
-                foreach (var emp in query)
-                {
+                var top5 = from e in _db.employees
+                           from r in _db.registrations.Where(x => x.EmployeeId == e.Id).DefaultIfEmpty()
+                           orderby r.Date descending
+                           select e;
+                foreach (var emp in top5) {
                     resList.Add(emp);
                 }
-                List<employee> recentlyUsers = new List<employee>();
-                var top5 = (from e in _db.employees
-                             join r in _db.registrations on e.Id equals r.EmployeeId
-                             orderby r.Date descending
-                             select e).Take(5);
-                foreach(var emp in top5) {
-                    recentlyUsers.Add(emp);
-                }
 
-                RM.Top5Employees = recentlyUsers;
-                RM.Employees = resList;
-                RM.Car = _db.cars.Find(RM.CarID);
-                return View(RM);
+                rm.Employees = resList;
+                rm.Car = _db.cars.Find(rm.CarID);
+                return View(rm);
             }
         }
 
         [HttpGet]
-        public ActionResult RegisterCarChecked(RegistrationModel RM)
-        {
-            RM.Car = _db.cars.Find(RM.CarID);
-            RM.Employee = _db.employees.Find(RM.EmployeeID);
-           return View(RM);
+        public ActionResult RegisterCarChecked(RegistrationModel rm) {
+            rm.Car = _db.cars.Find(rm.CarID);
+            rm.Employee = _db.employees.Find(rm.EmployeeID);
+            return View(rm);
         }
 
         [HttpPost, ActionName("RegisterCarChecked")]
-        public ActionResult PostRegisterCarChecked(RegistrationModel RM)
-        {
+        public ActionResult PostRegisterCarChecked(RegistrationModel rm) {
             registration reg = new registration();
-            reg.CarId = RM.CarID;
-            reg.EmployeeId = RM.EmployeeID;
+            reg.CarId = rm.CarID;
+            reg.EmployeeId = rm.EmployeeID;
             reg.Date = DateTime.Now;
-            reg.Comment = RM.Comment;
+            reg.Comment = rm.Comment;
             _db.registrations.Add(reg);
 
-            car car = _db.cars.Find(RM.CarID);
-            car.Status = (int) StatusTypes.Delivered;
+            car car = _db.cars.Find(rm.CarID);
+            car.Status = (int)StatusTypes.Delivered;
 
             _db.SaveChanges();
 
-            return RedirectToAction("Index","Home");
+            return RedirectToAction("Index", "Home");
         }
     }
 }
