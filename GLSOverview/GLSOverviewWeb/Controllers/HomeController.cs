@@ -41,7 +41,16 @@ namespace GLSOverviewWeb.Controllers
                 {
                     resList.Add(emp);
                 }
+                List<employee> recentlyUsers = new List<employee>();
+                var top5 = (from e in _db.employees
+                             join r in _db.registrations on e.Id equals r.EmployeeId
+                             orderby r.Date descending
+                             select e).Take(5);
+                foreach(var emp in top5) {
+                    recentlyUsers.Add(emp);
+                }
 
+                RM.Top5Employees = recentlyUsers;
                 RM.Employees = resList;
                 RM.Car = _db.cars.Find(RM.CarID);
                 return View(RM);

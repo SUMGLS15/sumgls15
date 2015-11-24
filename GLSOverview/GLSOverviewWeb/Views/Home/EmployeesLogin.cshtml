@@ -4,10 +4,11 @@
     ViewBag.Title = "Overview";
 }
 
-<h3>Car:  @Model.Car.Licenseplate</h3>
+<h3>Choose an Employee for registration of car  @Model.Car.Licenseplate</h3>
+<br/>
+<h4>Recently active employees: </h4>
 <table class="table table-striped table-hover">
-
-    @foreach (var item in Model.Employees)
+    @foreach (var item in Model.Top5Employees)
     {
         <tr onclick="document.location = '@Url.Action("RegisterCarChecked", new { EmployeeID = item.Id, CarID = Model.CarID})'">
             <td style="text-align: center">
@@ -15,5 +16,15 @@
             </td>
         </tr>
     }
-
+</table>
+<br/>
+<h4>All employees: </h4>
+<table class="table table-striped table-hover">
+    @foreach (var item in Model.Employees) {
+        <tr onclick="document.location = '@Url.Action("RegisterCarChecked", new { EmployeeID = item.Id, CarID = Model.CarID})'">
+            <td style="text-align: center">
+                <h4> @Html.DisplayFor(modelItem => item.Name)</h4>
+            </td>
+        </tr>
+    }
 </table>
