@@ -1,4 +1,5 @@
-﻿@model IEnumerable<GLSOverviewWeb.Models.car>
+﻿@using GLSOverviewWeb.Controllers
+@model IEnumerable<GLSOverviewWeb.Models.car>
 
 @{
     ViewBag.Title = "Administrate cars";
@@ -53,5 +54,9 @@
     }
 
 </table>
+
+<div>
+    @Html.ActionLink("Back to Administration page", "Index", "Admin")
+</div>
 
 
