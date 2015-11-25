@@ -29,7 +29,7 @@ CREATE TABLE IF NOT EXISTS `Employee` (
   `Id` INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
   `EmpNo` VARCHAR(10) NOT NULL,
   `Name` VARCHAR(45) NOT NULL,
-  `Password` varchar(20),
+  `Password` varchar(40),
   `Admin` TINYINT(1) NOT NULL DEFAULT 0
 );
 
@@ -39,8 +39,9 @@ CREATE TABLE IF NOT EXISTS `Employee` (
 
 CREATE TABLE IF NOT EXISTS `Registration` (
   `Id` INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
-  `Date` DATETIME NULL,
   `Comment` VARCHAR(255),
+  `Date` DATETIME NOT NULL,
+  `CommentHandled` BIT DEFAULT 0,
   `CarId` INT NOT NULL, FOREIGN KEY (CarId) REFERENCES Car(Id),
   `EmployeeId` INT NOT NULL, FOREIGN KEY (EmployeeId) REFERENCES Employee(Id)
 );

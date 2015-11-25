@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Data.Entity.Validation;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using GLSOverviewWeb.Helpers;
 using GLSOverviewWeb.Models;
 
 namespace GLSOverviewWeb.Controllers
@@ -31,7 +33,7 @@ namespace GLSOverviewWeb.Controllers
         }
 
         [HttpGet]
-        public ActionResult Add()
+        public ActionResult Create()
         {
             if (!LoginController.IsAdmin())
                 return View("~/Views/Login/Index.cshtml");
@@ -40,15 +42,37 @@ namespace GLSOverviewWeb.Controllers
         }
 
         [HttpPost]
-        public ActionResult Add(employee emp)
+        public ActionResult Create(employee emp)
         {
             if (!LoginController.IsAdmin())
                 return View("~/Views/Login/Index.cshtml");
 
             using (glsoverviewdbEntities db = new glsoverviewdbEntities())
             {
+                emp.Password = Sha1.Encode(emp.Password);
+
                 db.employees.Add(emp);
-                db.SaveChanges();
+                try
+                {
+                    db.SaveChanges();
+                }
+                catch (DbEntityValidationException e)
+                {
+                    foreach (var eve in e.EntityValidationErrors)
+                    {
+                        Console.WriteLine(
+                            "Entity of type \"{0}\" in state \"{1}\" has the following validation errors:",
+                            eve.Entry.Entity.GetType().Name, eve.Entry.State);
+                        foreach (var ve in eve.ValidationErrors)
+                        {
+                            System.Diagnostics.Debug.WriteLine("- Property: \"{0}\", Value: \"{1}\", Error: \"{2}\"",
+                                ve.PropertyName,
+                                eve.Entry.CurrentValues.GetValue<object>(ve.PropertyName),
+                                ve.ErrorMessage);
+                        }
+                    }
+                    throw;
+                }
             }
             
             return RedirectToAction("Index", "AdminEmployees");
@@ -73,6 +97,8 @@ namespace GLSOverviewWeb.Controllers
         {
             using (glsoverviewdbEntities db = new glsoverviewdbEntities())
             {
+                emp.Password = Sha1.Encode(emp.Password);
+
                 db.Entry(emp).State = EntityState.Modified;
                 db.SaveChanges();
             }
