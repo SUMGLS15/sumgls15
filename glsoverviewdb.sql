@@ -18,7 +18,7 @@ CREATE TABLE IF NOT EXISTS `Car` (
   `RouteNo` VARCHAR(45) NULL,
   `Hauler` VARCHAR(45) NULL,
   `Status` INT NOT NULL,
-  `PortNo` INT NOT NULL DEFAULT -1
+  `Position` VARCHAR(45) NOT NULL DEFAULT "N/A"
 );
 
 -- -----------------------------------------------------
@@ -49,22 +49,25 @@ CREATE TABLE IF NOT EXISTS `Registration` (
 -- DEMO DATA
 -- -----------------------------------------------------
 
-INSERT INTO Car (Licenseplate, RouteNo, Hauler, Status) 
-	VALUES ("AA 12 123", "8000", "Ø", 0);
-INSERT INTO Car (Licenseplate, RouteNo, Hauler, Status) 
-	VALUES ("BB 12 123", "9000", "M", 1);
-INSERT INTO Car (Licenseplate, RouteNo, Hauler, Status) 
-	VALUES ("CC 12 123", "8240", "D", 2);
-INSERT INTO Car (Licenseplate, RouteNo, Hauler, Status) 
-	VALUES ("DD 12 123", "8210", "Ø", 0);
-INSERT INTO Car (Licenseplate, RouteNo, Hauler, Status) 
-	VALUES ("EE 12 123", "8800", "Ø", 1);
+INSERT INTO Car (Licenseplate, RouteNo, Hauler, Status, Position) 
+	VALUES
+		("AA 12 123", "8000", "Ø", 0, "Port 3"),
+		("BB 12 123", "9000", "M", 1, "Port 6"),
+		("CC 12 123", "8240", "D", 2, "Port 5"),
+		("DD 12 123", "8210", "Ø", 0, "At the main gate"),
+		("EE 12 123", "8800", "Ø", 1, "By the fence"),
+		("FF 12 123", "8801", "D", 1, "By the fence");
 
 INSERT INTO Employee (EmpNo, Name, Password, Admin) 
-	VALUES ("123", "Leo Møller", "321", 1);
-INSERT INTO Employee (EmpNo, Name, Password, Admin) 
-	VALUES ("234", "Morten KP", NULL, 0);
-INSERT INTO Employee (EmpNo, Name, Password, Admin) 
-	VALUES ("987", "SvendDK", NULL, 0);
-INSERT INTO Employee (EmpNo, Name, Password, Admin)  
-	VALUES ("567", "Kim de Vos", NULL, 0);
+	VALUES 
+		("123", "Leo Møller", "321", 1),
+		("234", "Morten KP", NULL, 0),
+		("987", "SvendK", NULL, 0),
+		("567", "Kim de Vos", NULL, 0),
+		("652", "Palle", NULL, 0),
+		("852", "Polle", NULL, 0),
+		("373", "Ruth", NULL, 0),
+		("834", "Piotr", NULL, 0);
+		
+	
+-- Test data for registringer?

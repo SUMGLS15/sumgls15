@@ -20,7 +20,7 @@
 
         @foreach (var emp in Model)
         {
-            <tr>
+            <tr class="clickable">
                 <td>@emp.EmpNo</td>
                 <td>@emp.Name</td>
                 <td>
@@ -30,4 +30,8 @@
             </tr>
         }
     </table>
+</div>
+
+<div>
+    @Html.ActionLink("Back to Administration page", "Index", "Admin")
 </div>

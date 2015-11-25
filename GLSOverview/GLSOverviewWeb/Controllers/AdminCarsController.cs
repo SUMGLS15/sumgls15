@@ -74,7 +74,7 @@ namespace GLSOverviewWeb.Controllers
                 car.Hauler = formCar.Hauler;
                 car.Licenseplate = formCar.Licenseplate;
                 car.RouteNo = formCar.RouteNo;
-                car.PortNo = formCar.PortNo;
+                car.Position = formCar.Position;
 
                 _db.SaveChanges();
 

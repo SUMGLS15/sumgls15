@@ -11,3 +11,10 @@
     }(jQuery));
 });
 
+// If browser cannot handle the input type date (HTML5 thing), then use the nuget packet Bootstrap Datepicker datepicker.
+// http://www.aubrett.com/InformationTechnology/WebDevelopment/MVC/DatePickerMVC5.aspx
+if (!Modernizr.inputtypes.date) {
+    $(function () {
+        $(".datecontrol").datepicker();
+    });
+}
