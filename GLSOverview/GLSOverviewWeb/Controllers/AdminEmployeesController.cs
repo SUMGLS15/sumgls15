@@ -51,7 +51,7 @@ namespace GLSOverviewWeb.Controllers
                 db.SaveChanges();
             }
             
-            return RedirectToAction("Index", "AdminEmployee");
+            return RedirectToAction("Index", "AdminEmployees");
         }
 
         [HttpGet]
