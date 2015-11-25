@@ -1,63 +1,37 @@
 ﻿@model GLSOverviewWeb.Models.car
 
 @{
-    ViewBag.Title = "Delete car";
+    ViewBag.Title = "Delete Car";
 }
 
-<h2>Delete car @Model.Licenseplate</h2>
+<h2>Delete Car <small>- @Model.Licenseplate</small></h2>
+<hr />
 
-<h3>Are you sure you want to delete this?</h3>
-<div>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Licenseplate)
-        </dt>
+Are you sure you want to permanently delete this car?
+<p/>
 
-        <dd>
-            @Html.DisplayFor(model => model.Licenseplate)
-        </dd>
+<dl class="dl-horizontal">
+    <dt>@Html.DisplayNameFor(model => model.Licenseplate)</dt>
+    <dd>@Html.DisplayFor(model => model.Licenseplate)</dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.RouteNo)
-        </dt>
+    <dt>@Html.DisplayNameFor(model => model.RouteNo)</dt>
+    <dd>@Html.DisplayFor(model => model.RouteNo)</dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.RouteNo)
-        </dd>
+    <dt>@Html.DisplayNameFor(model => model.Hauler)</dt>
+    <dd>@Html.DisplayFor(model => model.Hauler)</dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Hauler)
-        </dt>
+    <dt>@Html.DisplayNameFor(model => model.Position)</dt>
+    <dd>@Html.DisplayFor(model => model.Position)</dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.Hauler)
-        </dd>
+    @*<dt>@Html.DisplayNameFor(model => model.Status)</dt>
+        <dd>@Html.DisplayFor(model => model.Status)</dd>*@
+</dl>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Status)
-        </dt>
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
 
-        <dd>
-            @Html.DisplayFor(model => model.Status)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Position)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Position)
-        </dd>
-
-    </dl>
-
-    @using (Html.BeginForm()) {
-        @Html.AntiForgeryToken()
-
-        <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
-            @Html.ActionLink("Back to List", "Index")
-        </div>
-    }
-</div>
+    <div class="col-md-11 col-md-offset-1">
+        <input type="button" class="btn btn-default" value="Cancel" onclick="location.href='@Url.Action("Index", "AdminCars")'" />
+        <input type="submit" class="btn btn-danger active" value="Delete Car" />
+    </div>
+}

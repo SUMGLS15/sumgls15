@@ -1,10 +1,11 @@
 ﻿@model GLSOverviewWeb.Models.car
 
 @{
-    ViewBag.Title = "Edit car";
+    ViewBag.Title = "Edit Car";
 }
 
-<h2>Edit car: @Model.Licenseplate</h2>
+<h2>Edit Car <small>- @Model.Licenseplate</small></h2>
+<hr />
 
 @using (Html.BeginForm())
 {
@@ -15,43 +16,42 @@
         @Html.HiddenFor(model => model.Id)
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Licenseplate, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Licenseplate)
-                @Html.ValidationMessageFor(model => model.Licenseplate)
+            @Html.LabelFor(model => model.Licenseplate, htmlAttributes: new { @class = "control-label col-md-1" })
+            <div class="col-md-11">
+                @Html.EditorFor(model => model.Licenseplate, new { htmlAttributes = new { @class = "form-control", @placeholder = "ex AA 10 100" } })
+                @Html.ValidationMessageFor(model => model.Licenseplate, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Hauler, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Hauler)
-                @Html.ValidationMessageFor(model => model.Hauler)
+            @Html.LabelFor(model => model.RouteNo, htmlAttributes: new { @class = "control-label col-md-1" })
+            <div class="col-md-11">
+                @Html.EditorFor(model => model.RouteNo, new { htmlAttributes = new { @class = "form-control", @placeholder = "ex 8000" } })
+                @Html.ValidationMessageFor(model => model.RouteNo, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.RouteNo, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.RouteNo)
-                @Html.ValidationMessageFor(model => model.RouteNo)
+            @Html.LabelFor(model => model.Hauler, htmlAttributes: new { @class = "control-label col-md-1" })
+            <div class="col-md-11">
+                @Html.EditorFor(model => model.Hauler, new { htmlAttributes = new { @class = "form-control", @placeholder = "ex AA 10 100" } })
+                @Html.ValidationMessageFor(model => model.Hauler, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Position, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Position)
-                @Html.ValidationMessageFor(model => model.Position)
+            @Html.LabelFor(model => model.Position, htmlAttributes: new { @class = "control-label col-md-1" })
+            <div class="col-md-11">
+                @Html.EditorFor(model => model.Position, new { htmlAttributes = new { @class = "form-control", @placeholder = "ex Port 5" } })
+                @Html.ValidationMessageFor(model => model.Position, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save" class="btn btn-default"/> |
-                @Html.ActionLink("Back to List", "Index")
+            <div class="col-md-11 col-md-offset-1">
+                <input type="button" class="btn btn-default" value="Cancel" onclick="location.href='@Url.Action("Index", "AdminCars")'" />
+                <input type="submit" value="Save Changes" class="btn btn-primary active" />
             </div>
         </div>
     </div>
-
 }
