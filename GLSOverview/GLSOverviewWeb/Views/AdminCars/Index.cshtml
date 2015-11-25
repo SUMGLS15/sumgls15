@@ -6,29 +6,25 @@
 }
 
 <h2>Manage Cars</h2>
+<hr/>
+
+<input type="button" class="btn btn-default" value="Back to Administration" onclick="location.href='@Url.Action("Index", "Admin")'" />
+<input type="button" class="btn btn-primary active" value="Create New Car" onclick="location.href='@Url.Action("Create", "AdminCars")'" />
 
 <table class="table table-striped">
-    <tr>
-        <th>
-            <h4>@Html.DisplayNameFor(model => model.Licenseplate)</h4>
-        </th>
-        <th>
-            <h4>@Html.DisplayNameFor(model => model.Hauler)</h4>
-        </th>
-        <th>
-            <h4>@Html.DisplayNameFor(model => model.RouteNo)</h4>
-        </th>
-        <th>
-            <h4>@Html.DisplayNameFor(model => model.Position)</h4>
-        </th>
-        <th>
-            <h4>Actions</h4>
-        </th>
-    </tr>
+    <thead>
+        <tr>
+            <th>@Html.DisplayNameFor(model => model.Licenseplate)</th>
+            <th>@Html.DisplayNameFor(model => model.Hauler)</th>
+            <th>@Html.DisplayNameFor(model => model.RouteNo)</th>
+            <th>@Html.DisplayNameFor(model => model.Position)</th>
+            <th>Action</th>
+        </tr>
+    </thead>
 
     @foreach (var car in Model)
     {
-        <tr class="clickable">
+        <tr>
             <td>
                 @Html.DisplayFor(modelItem => car.Licenseplate)
             </td>
@@ -47,8 +43,4 @@
             </td>
         </tr>
     }
-
 </table>
-
-<input type="button" class="btn btn-default" value="Back to Administration" onclick="location.href='@Url.Action("Index", "Admin")'" />
-<input type="button" class="btn btn-primary active" value="Create New Car" onclick="location.href='@Url.Action("Create", "AdminCars")'" />

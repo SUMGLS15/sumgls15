@@ -21,12 +21,16 @@ namespace GLSOverviewWeb.Controllers
         [HttpPost]
         public ActionResult Index(employee employee)
         {
+            employee.Password = Sha1.Encode(employee.Password);
+
             var login = _db.employees
                            .FirstOrDefault(e => e.EmpNo == employee.EmpNo &&
                                                 e.Password == employee.Password);
             if (login == null)
-                return View(); // TODO Msg: Bad login
-
+            {
+                ModelState.AddModelError("password", "The username or password is incorrect");
+                return View(); 
+            }
             Session["User"] = login; // Gad vide om en hacker kan hente sessionen ud og lægge sessionen ind senere?
 
             return RedirectToAction("Index", "Admin");

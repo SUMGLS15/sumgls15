@@ -7,20 +7,21 @@
 <h2>Administration</h2>
 <p>Welcome back, @Html.DisplayFor(model => model.Employee.Name)</p>
 <hr/>
-<br/>
 
 <input type="button" class="btn btn-primary active" value="Manage Cars" onclick="location.href='@Url.Action("Index", "AdminCars")'" />
 <input type="button" class="btn btn-primary active" value="Manage Employees" onclick="location.href='@Url.Action("Index", "AdminEmployees")'" />
 <br/>
-<br/>
+
 @if (Model.RegistrationList.Count() > 0) {
 <h4><span class="label label-warning">List of Registrations with notifications</span></h4>
 <table class="table table-striped">
-    <tr>
-        <th>@Html.Label("Route Number:")</th>
-        <th>@Html.Label("License Plate:")</th>
-        <th>@Html.Label("Details:")</th>
-    </tr>
+    <thead>
+        <tr>
+            <th>@Html.Label("Route Number")</th>
+            <th>@Html.Label("License Plate")</th>
+            <th>@Html.Label("Details")</th>
+        </tr>
+    </thead>
     @foreach (var reg in Model.RegistrationList) {
         <tr>
             <td>@reg.car.RouteNo</td>
