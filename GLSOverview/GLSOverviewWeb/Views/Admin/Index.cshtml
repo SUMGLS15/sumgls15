@@ -9,11 +9,6 @@
 
 <h4><small>Welcome back, @Html.DisplayFor(model => model.Name)</small></h4>
 
-<ul>
-    <li>
-        @Html.ActionLink("Car Admin", "Index", "AdminCars")
-    </li>
-    <li>
-        @Html.ActionLink("Employee Admin", "Index", "AdminEmployees")
-    </li>
-</ul>
+
+<input type="button" class="btn btn-primary active" value="Manage Cars" onclick="location.href='@Url.Action("Index", "AdminCars")'" />
+<input type="button" class="btn btn-primary active" value="Manage Employees" onclick="location.href='@Url.Action("Index", "AdminEmployees")'" />
