@@ -2,13 +2,13 @@
 @model IEnumerable<GLSOverviewWeb.Models.car>
 
 @{
-    ViewBag.Title = "Manage cars";
+    ViewBag.Title = "Manage Cars";
 }
 
 <h2>Manage Cars</h2>
 <hr />
 
-<input type="button" class="btn btn-primary active" value="New Car" onclick="location.href='@Url.Action("Add", "AdminCars")'" />
+<input type="button" class="btn btn-primary active" value="Create New Car" onclick="location.href='@Url.Action("Create", "AdminCars")'" />
 <p />
 
 <table class="table table-striped">
@@ -54,8 +54,4 @@
 
 </table>
 
-<div>
-    @Html.ActionLink("Back to Administration", "Index", "Admin")
-</div>
-
-
+<input type="button" class="btn btn-default" value="Back to Administration" onclick="location.href='@Url.Action("Index", "Admin")'" />
