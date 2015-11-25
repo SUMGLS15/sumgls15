@@ -1,14 +1,36 @@
-﻿@model GLSOverviewWeb.Models.employee
+﻿@model GLSOverviewWeb.Viewmodels.AdminModel
 
 @{
     ViewBag.Title = "Administration";
 }
 
 <h2>Administration</h2>
+<p>Welcome back, @Html.DisplayFor(model => model.Employee.Name)</p>
 <hr/>
-
-<h4><small>Welcome back, @Html.DisplayFor(model => model.Name)</small></h4>
-
+<br/>
 
 <input type="button" class="btn btn-primary active" value="Manage Cars" onclick="location.href='@Url.Action("Index", "AdminCars")'" />
 <input type="button" class="btn btn-primary active" value="Manage Employees" onclick="location.href='@Url.Action("Index", "AdminEmployees")'" />
+<br/>
+<br/>
+@if (Model.RegistrationList.Count() > 0) {
+<h4><span class="label label-warning">List of Registrations with notifications</span></h4>
+<table class="table table-striped">
+    <tr>
+        <th>@Html.Label("Route Number:")</th>
+        <th>@Html.Label("License Plate:")</th>
+        <th>@Html.Label("Details:")</th>
+    </tr>
+    @foreach (var reg in Model.RegistrationList) {
+        <tr>
+            <td>@reg.car.RouteNo</td>
+            <td>@reg.car.Licenseplate</td>
+            <td>@Html.ActionLink("View", "RegistrationDetails", new { id = reg.Id })</td>
+        </tr>
+    }
+
+</table>
+}
+else {
+    <h4><span class="label label-success">No registrations to handle</span></h4>
+}
