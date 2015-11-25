@@ -61,7 +61,7 @@ INSERT INTO Car (Licenseplate, RouteNo, Hauler, Status, Position)
 
 INSERT INTO Employee (EmpNo, Name, Password, Admin) 
 	VALUES 
-		("123", "Leo Møller", "321", 1),
+		("123", "Leo Møller", "5f6955d227a320c7f1f6c7da2a6d96a851a8118f", 1),
 		("234", "Morten KP", NULL, 0),
 		("987", "SvendK", NULL, 0),
 		("567", "Kim de Vos", NULL, 0),
