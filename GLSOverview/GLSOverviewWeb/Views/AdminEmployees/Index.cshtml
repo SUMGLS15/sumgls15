@@ -7,7 +7,7 @@
 <h2>Manage Employees</h2>
 <hr />
 
-<input type="button" class="btn btn-primary active" value="New Employee" onclick="location.href='@Url.Action("Add", "AdminEmployees")'" />
+<input type="button" class="btn btn-primary active" value="New Employee" onclick="location.href='@Url.Action("Create", "AdminEmployees")'" />
 <p />
 
 <div>
@@ -32,6 +32,4 @@
     </table>
 </div>
 
-<div>
-    @Html.ActionLink("Back to Administration", "Index", "Admin")
-</div>
+<input type="button" class="btn btn-default" value="Back to Administration" onclick="location.href='@Url.Action("Index", "Admin")'" />

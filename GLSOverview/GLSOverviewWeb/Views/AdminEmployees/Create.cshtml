@@ -1,10 +1,10 @@
 ﻿@model GLSOverviewWeb.Models.employee
 
 @{
-    ViewBag.Title = "Add New Employee";
+    ViewBag.Title = "Create New Employee";
 }
 
-<h2>Add New Employee</h2>
+<h2>Create New Employee</h2>
 <hr />
 
 @using (Html.BeginForm()) 
@@ -12,6 +12,7 @@
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
             @Html.LabelFor(model => model.EmpNo, htmlAttributes: new { @class = "control-label col-md-1" })
             <div class="col-md-11">
