@@ -15,8 +15,9 @@ namespace GLSOverviewWeb.Models
     public partial class registration
     {
         public int Id { get; set; }
-        public Nullable<System.DateTime> Date { get; set; }
+        public System.DateTime Date { get; set; }
         public string Comment { get; set; }
+        public Nullable<bool> CommentHandled { get; set; }
         public int CarId { get; set; }
         public int EmployeeId { get; set; }
     

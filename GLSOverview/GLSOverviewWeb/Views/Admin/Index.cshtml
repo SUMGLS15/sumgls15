@@ -1,18 +1,14 @@
 ﻿@model GLSOverviewWeb.Models.employee
 
 @{
-    Layout = "~/Views/Shared/_Layout.cshtml";
-    ViewBag.Title = "Administration page";
+    ViewBag.Title = "Administration";
 }
-<h2>Administration page</h2>
 
-<h3>Welcome back, @Html.DisplayFor(model => model.Name)</h3>
+<h2>Administration</h2>
+<hr/>
 
-<ul>
-    <li>
-        @Html.ActionLink("Car Admin", "Index", "AdminCars")
-    </li>
-    <li>
-        @Html.ActionLink("Employee Admin", "Index", "AdminEmployees")
-    </li>
-</ul>
+<h4><small>Welcome back, @Html.DisplayFor(model => model.Name)</small></h4>
+
+
+<input type="button" class="btn btn-primary active" value="Manage Cars" onclick="location.href='@Url.Action("Index", "AdminCars")'" />
+<input type="button" class="btn btn-primary active" value="Manage Employees" onclick="location.href='@Url.Action("Index", "AdminEmployees")'" />

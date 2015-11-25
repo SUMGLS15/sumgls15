@@ -2,32 +2,31 @@
 @model IEnumerable<GLSOverviewWeb.Models.car>
 
 @{
-    ViewBag.Title = "Administrate cars";
+    ViewBag.Title = "Manage cars";
 }
 
-<h2>Administrate cars</h2>
+<h2>Manage Cars</h2>
+<hr />
 
-<a>
-    <input class="btn btn-primary active" type="button" value="New Car" 
-           onclick="location.href = '@Url.Action("Create", "AdminCars")'"/>
-</a>
+<input type="button" class="btn btn-primary active" value="New Car" onclick="location.href='@Url.Action("Create", "AdminCars")'" />
+<p />
 
 <table class="table table-striped">
     <tr >
         <th>
-            <h4> @Html.DisplayNameFor(model => model.Licenseplate)</h4>
+            <h4>@Html.DisplayNameFor(model => model.Licenseplate)</h4>
         </th>
         <th>
-            <h4> @Html.DisplayNameFor(model => model.Hauler)</h4>
+            <h4>@Html.DisplayNameFor(model => model.Hauler)</h4>
         </th>
         <th>
-            <h4> @Html.DisplayNameFor(model => model.RouteNo)</h4>
+            <h4>@Html.DisplayNameFor(model => model.RouteNo)</h4>
         </th>
         <th>
-            <h4> @Html.DisplayNameFor(model => model.Position)</h4>
+            <h4>@Html.DisplayNameFor(model => model.Position)</h4>
         </th>
         <th>
-            <h4>Actions: </h4>
+            <h4>Actions</h4>
         </th>
     </tr>
 
@@ -47,8 +46,8 @@
                 @Html.DisplayFor(modelItem => car.Position)
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new {id = car.Id}, new {@class = "btn btn-info btn-xs"}) |
-                @Html.ActionLink("Delete", "Delete", new {id = car.Id}, new {@class = "btn btn-info btn-xs"})
+                @Html.ActionLink("Edit", "Edit", new {id = car.Id}, new {@class = "btn btn-primary active btn-xs"}) |
+                @Html.ActionLink("Delete", "Delete", new {id = car.Id}, new {@class = "btn btn-danger active btn-xs"})
             </td>
         </tr>
     }
@@ -56,7 +55,7 @@
 </table>
 
 <div>
-    @Html.ActionLink("Back to Administration page", "Index", "Admin")
+    @Html.ActionLink("Back to Administration", "Index", "Admin")
 </div>
 
 
