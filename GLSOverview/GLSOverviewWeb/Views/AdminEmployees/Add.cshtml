@@ -1,18 +1,16 @@
 ﻿@model GLSOverviewWeb.Models.employee
 
 @{
-    ViewBag.Title = "Add new employee";
+    ViewBag.Title = "Add New Employee";
 }
 
-<h2>Add new employee</h2>
-
+<h2>Add New Employee</h2>
 
 @using (Html.BeginForm()) 
 {
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
-        <h4>employee</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
@@ -32,20 +30,19 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.Admin, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+                <!--@Html.EditorFor(model => model.Admin, "", new { @class = "checkbox" })-->
+                @Html.EditorFor(model => model.Admin, new { htmlAttributes = new { @onclick = "EnablePassword(this)", @class = "checkbox" } })
+                @Html.ValidationMessageFor(model => model.Admin, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Admin, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                <div class="checkbox">
-                    @Html.EditorFor(model => model.Admin)
-                    @Html.ValidationMessageFor(model => model.Admin, "", new { @class = "text-danger" })
-                </div>
+                @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
             </div>
         </div>
 
@@ -60,6 +57,19 @@
 <div>
     @Html.ActionLink("Back to List", "Index")
 </div>
+
+<script>
+    EnablePassword = function(val) {
+        var psswrd = document.getElementById("password");
+
+        if (val.checked == true) {
+            psswrd.disabled = false;
+        }
+        else {
+            psswrd.disabled = true;
+        }
+    }
+</script>
 
 <script src="~/Scripts/jquery-1.10.2.min.js"></script>
 <script src="~/Scripts/jquery.validate.min.js"></script>
