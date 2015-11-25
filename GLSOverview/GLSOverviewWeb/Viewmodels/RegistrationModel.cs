@@ -35,9 +35,9 @@ namespace GLSOverviewWeb.Viewmodels
             "Put the key at the correct spot in the safe" 
         };
 
-        [DisplayName("Archive Date")]
+        [DisplayName("Show overview for date")]
         [DataType(DataType.DateTime)]
-        public DateTime? ArchiveDate { get; set; }
+        public DateTime? ShowDate { get; set; }
 
     }
 }
