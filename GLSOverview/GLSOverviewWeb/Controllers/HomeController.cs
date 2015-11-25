@@ -26,31 +26,37 @@ namespace GLSOverviewWeb.Controllers
             return View(RM);
         }
 
-
-        //TODO Not done...
         [HttpGet]
-        public ActionResult IndexArchive(DateTime? archiveDate)
+        public ActionResult IndexArchive(DateTime? showDate)
         {
             if (!LoginController.IsAdmin())
                 return View("~/Views/Login/Index.cshtml");
-         
+
+            if (showDate == null)
+                return View("Index");
+
             var RM = new RegistrationModel();
             RM.Cars = _db.cars.ToList();
 
             foreach (var car in RM.Cars)
             {
-                car.Status = (int) StatusTypes.Arrived;
+                car.Status = (int)StatusTypes.Arrived;
             }
 
-            // TODO SK Problemet er, at den matcher på hele datetimen, ikke bare datoen. Og Linq2Entities understøtter Date. Lårt?!
-            // var registrations = _db.registrations.Where(r => r.Date.Value.Date == archiveDate.Value.Date).ToList();
-            //var registrations = _db.registrations.Where(r => r.Date.Value.Date > archiveDate.Value.Date DateTime...Equals(archiveDate.Value.Date)).ToList();
-            //foreach (var registration in registrations)
-            //{
-            //    var car = RM.Cars.FirstOrDefault(c => c.Id == registration.CarId);
-            //    if (car != null)
-            //        car.Status = (int) StatusTypes.Parked;
-            //}
+            var archiveDateStart = showDate.Value.Date;
+            var archiveDateEnd = showDate.Value.Date.AddDays(1).AddSeconds(-1);
+
+            var registrations = _db.registrations.Where(r =>
+                r.Date >= archiveDateStart &&
+                r.Date <= archiveDateEnd
+                ).ToList();
+
+            foreach (var registration in registrations)
+            {
+                var car = RM.Cars.FirstOrDefault(c => c.Id == registration.CarId);
+                if (car != null)
+                    car.Status = (int)StatusTypes.Parked;
+            }
 
             return View("Index", RM);
         }

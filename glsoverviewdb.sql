@@ -29,7 +29,7 @@ CREATE TABLE IF NOT EXISTS `Employee` (
   `Id` INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
   `EmpNo` VARCHAR(10) NOT NULL,
   `Name` VARCHAR(45) NOT NULL,
-  `Password` varchar(40),
+  `Password` varchar(40), -- SHA1 hashes are 40 chars
   `Admin` TINYINT(1) NOT NULL DEFAULT 0
 );
 
@@ -69,6 +69,9 @@ INSERT INTO Employee (EmpNo, Name, Password, Admin)
 		("852", "Polle", NULL, 0),
 		("373", "Ruth", NULL, 0),
 		("834", "Piotr", NULL, 0);
-		
+
+INSERT INTO Registration (Comment, Date, CommentHandled, CarId, EmployeeId)
+	VALUES
+		(NULL, '2015-11-14 12:00', 0, 3, "987")
 	
 -- Test data for registringer?
