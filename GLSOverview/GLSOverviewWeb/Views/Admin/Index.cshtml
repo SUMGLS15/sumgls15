@@ -1,4 +1,4 @@
-﻿@model GLSOverviewWeb.Models.employee
+﻿@model GLSOverviewWeb.Viewmodels.AdminModel
 
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -6,7 +6,7 @@
 }
 <h2>Administration page</h2>
 
-<h3>Welcome back, @Html.DisplayFor(model => model.Name)</h3>
+<h3>Welcome back, @Html.DisplayFor(model => model.Employee.Name)</h3>
 
 <ul>
     <li>
@@ -16,3 +16,25 @@
         @Html.ActionLink("Employee Admin", "Index", "AdminEmployees")
     </li>
 </ul>
+<br/>
+@if (Model.RegistrationList.Count() > 0) {
+<h4><span class="label label-warning">List of Registrations with notifications</span></h4>
+<table class="table table-striped">
+    <tr>
+        <th>@Html.Label("Route Number:")</th>
+        <th>@Html.Label("License Plate:")</th>
+        <th>@Html.Label("Details:")</th>
+    </tr>
+    @foreach (var reg in Model.RegistrationList) {
+        <tr>
+            <td>@reg.car.RouteNo</td>
+            <td>@reg.car.Licenseplate</td>
+            <td>@Html.ActionLink("View", "RegistrationDetails", new { id = reg.Id })</td>
+        </tr>
+    }
+
+</table>
+}
+else {
+    <h4><span class="label label-success">No registrations to handle</span></h4>
+}
