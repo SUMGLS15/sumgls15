@@ -21,6 +21,8 @@ namespace GLSOverviewWeb.Controllers
         [HttpPost]
         public ActionResult Index(employee employee)
         {
+            employee.Password = Sha1.Encode(employee.Password);
+
             var login = _db.employees
                            .FirstOrDefault(e => e.EmpNo == employee.EmpNo &&
                                                 e.Password == employee.Password);
