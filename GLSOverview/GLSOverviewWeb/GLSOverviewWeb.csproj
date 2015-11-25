@@ -276,7 +276,7 @@
     <Content Include="Views\AdminCars\Edit.cshtml" />
     <Content Include="Views\Home\RegisterCarChecked.cshtml" />
     <Content Include="Views\AdminEmployees\Index.cshtml" />
-    <Content Include="Views\AdminEmployees\Add.cshtml" />
+    <Content Include="Views\AdminEmployees\Create.cshtml" />
     <Content Include="Views\AdminEmployees\Edit.cshtml" />
     <Content Include="Views\AdminEmployees\Delete.cshtml" />
     <Content Include="Views\Admin\Index.cshtml" />
