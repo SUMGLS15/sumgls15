@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using GLSOverviewWeb.Models;
 using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 
 namespace GLSOverviewWeb.Viewmodels
 {
@@ -33,6 +34,10 @@ namespace GLSOverviewWeb.Viewmodels
             "Engaged the parking brake", 
             "Put the key at the correct spot in the safe" 
         };
+
+        [DisplayName("Archive Date")]
+        [DataType(DataType.DateTime)]
+        public DateTime? ArchiveDate { get; set; }
 
     }
 }

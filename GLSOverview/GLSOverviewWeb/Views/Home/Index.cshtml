@@ -8,6 +8,24 @@
 
 <h2>Overview</h2>
 
+@if (LoginController.IsLoggedIn())
+{
+    using (Html.BeginForm("IndexArchive", "Home", FormMethod.Get))
+    {
+        <div class="form-group">
+            <span class="label label-default">
+                @Html.LabelFor(m => m.ArchiveDate, new { @class = "control-label" })
+            </span>
+            <div>
+                @Html.EditorFor(m => m.ArchiveDate)
+
+                <input type="submit" value="View" class="btn btn-default" />
+            </div>
+            
+        </div>
+    }
+}
+
 <h3><span class="label label-success">Arrived<img src="~/Content/home.png" /></span></h3>
 <div class="input-group">
     <span class="input-group-addon">Filter</span>
