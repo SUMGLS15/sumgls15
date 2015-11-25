@@ -6,13 +6,9 @@
 }
 
 <h2>Manage Cars</h2>
-<hr />
-
-<input type="button" class="btn btn-primary active" value="Create New Car" onclick="location.href='@Url.Action("Create", "AdminCars")'" />
-<p />
 
 <table class="table table-striped">
-    <tr >
+    <tr>
         <th>
             <h4>@Html.DisplayNameFor(model => model.Licenseplate)</h4>
         </th>
@@ -46,7 +42,7 @@
                 @Html.DisplayFor(modelItem => car.Position)
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new {id = car.Id}, new {@class = "btn btn-primary active btn-xs"}) |
+                @Html.ActionLink("Edit", "Edit", new {id = car.Id}, new {@class = "btn btn-primary active btn-xs"})
                 @Html.ActionLink("Delete", "Delete", new {id = car.Id}, new {@class = "btn btn-danger active btn-xs"})
             </td>
         </tr>
@@ -55,3 +51,4 @@
 </table>
 
 <input type="button" class="btn btn-default" value="Back to Administration" onclick="location.href='@Url.Action("Index", "Admin")'" />
+<input type="button" class="btn btn-primary active" value="Create New Car" onclick="location.href='@Url.Action("Create", "AdminCars")'" />
