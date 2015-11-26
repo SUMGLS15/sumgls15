@@ -23,7 +23,7 @@
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="EmpNo" Type="varchar" MaxLength="10" Nullable="false" />
           <Property Name="Name" Type="varchar" MaxLength="45" Nullable="false" />
-          <Property Name="Password" Type="varchar" MaxLength="100" />
+          <Property Name="Password" Type="varchar" MaxLength="40" />
           <Property Name="Admin" Type="bool" Nullable="false" />
         </EntityType>
         <EntityType Name="registration">
@@ -31,11 +31,12 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Date" Type="datetime" Precision="0" Nullable="false" />
           <Property Name="Comment" Type="varchar" MaxLength="255" />
+          <Property Name="Date" Type="datetime" Precision="0" Nullable="false" />
           <Property Name="CommentHandled" Type="bit" />
           <Property Name="CarId" Type="int" Nullable="false" />
           <Property Name="EmployeeId" Type="int" Nullable="false" />
+          <Property Name="Position" Type="varchar" MaxLength="45" Nullable="false" />
         </EntityType>
         <Association Name="registration_ibfk_1">
           <End Role="car" Type="Self.car" Multiplicity="1" />
@@ -110,7 +111,7 @@
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="EmpNo" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
           <Property Name="Name" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="false" />
-          <Property Name="Password" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Password" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
           <Property Name="Admin" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="registrations" Relationship="glsoverviewdbModel.registration_ibfk_2" FromRole="employee" ToRole="registration" />
         </EntityType>
@@ -119,11 +120,12 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Date" Type="DateTime" Nullable="false" />
           <Property Name="Comment" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Date" Type="DateTime" Nullable="false" />
           <Property Name="CommentHandled" Type="Boolean" />
           <Property Name="CarId" Type="Int32" Nullable="false" />
           <Property Name="EmployeeId" Type="Int32" Nullable="false" />
+          <Property Name="Position" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="car" Relationship="glsoverviewdbModel.registration_ibfk_1" FromRole="registration" ToRole="car" />
           <NavigationProperty Name="employee" Relationship="glsoverviewdbModel.registration_ibfk_2" FromRole="registration" ToRole="employee" />
         </EntityType>
@@ -183,11 +185,12 @@
           <EntitySetMapping Name="registrations">
             <EntityTypeMapping TypeName="glsoverviewdbModel.registration">
               <MappingFragment StoreEntitySet="registration">
+                <ScalarProperty Name="Position" ColumnName="Position" />
                 <ScalarProperty Name="EmployeeId" ColumnName="EmployeeId" />
                 <ScalarProperty Name="CarId" ColumnName="CarId" />
                 <ScalarProperty Name="CommentHandled" ColumnName="CommentHandled" />
-                <ScalarProperty Name="Comment" ColumnName="Comment" />
                 <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="Comment" ColumnName="Comment" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
