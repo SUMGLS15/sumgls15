@@ -9,17 +9,16 @@ using System.Web.UI.WebControls;
 using GLSOverviewWeb.Models;
 using GLSOverviewWeb.Viewmodels;
 
-namespace GLSOverviewWeb.Controllers
-{
-    public enum StatusTypes { Departed, Arrived, Parked }
+namespace GLSOverviewWeb.Controllers {
+    public enum StatusTypes {
+        Departed, Arrived, Parked
+    }
 
-    public class HomeController : Controller
-    {
+    public class HomeController :Controller {
         private glsoverviewdbEntities _db = new glsoverviewdbEntities();
 
         [HttpGet]
-        public ActionResult Index()
-        {
+        public ActionResult Index() {
             var RM = new RegistrationModel();
 
             RM.Cars = _db.cars.ToList();
@@ -27,8 +26,7 @@ namespace GLSOverviewWeb.Controllers
         }
 
         [HttpGet]
-        public ActionResult IndexArchive(DateTime? showDate)
-        {
+        public ActionResult IndexArchive(DateTime? showDate) {
             if (!LoginController.IsAdmin())
                 return View("~/Views/Login/Index.cshtml");
 
@@ -38,8 +36,7 @@ namespace GLSOverviewWeb.Controllers
             var RM = new RegistrationModel();
             RM.Cars = _db.cars.ToList();
 
-            foreach (var car in RM.Cars)
-            {
+            foreach (var car in RM.Cars) {
                 car.Status = (int)StatusTypes.Arrived;
             }
 
@@ -51,8 +48,7 @@ namespace GLSOverviewWeb.Controllers
                 r.Date <= archiveDateEnd
                 ).ToList();
 
-            foreach (var registration in registrations)
-            {
+            foreach (var registration in registrations) {
                 var car = RM.Cars.FirstOrDefault(c => c.Id == registration.CarId);
                 if (car != null)
                     car.Status = (int)StatusTypes.Parked;
@@ -62,10 +58,8 @@ namespace GLSOverviewWeb.Controllers
         }
 
         [HttpGet]
-        public ActionResult EmployeesLogin(RegistrationModel rm)
-        {
-            using (_db)
-            {
+        public ActionResult EmployeesLogin(RegistrationModel rm) {
+            using (_db) {
                 var top5 = (from e in _db.employees
                             from r in _db.registrations.Where(x => x.EmployeeId == e.Id).DefaultIfEmpty()
                             orderby r.Date descending
@@ -78,16 +72,14 @@ namespace GLSOverviewWeb.Controllers
         }
 
         [HttpGet]
-        public ActionResult RegisterCarChecked(RegistrationModel rm)
-        {
+        public ActionResult RegisterCarChecked(RegistrationModel rm) {
             rm.Car = _db.cars.Find(rm.CarID);
             rm.Employee = _db.employees.Find(rm.EmployeeID);
             return View(rm);
         }
 
         [HttpPost, ActionName("RegisterCarChecked")]
-        public ActionResult PostRegisterCarChecked(RegistrationModel rm)
-        {
+        public ActionResult PostRegisterCarChecked(RegistrationModel rm) {
             registration reg = new registration();
             reg.CarId = rm.CarID;
             reg.EmployeeId = rm.EmployeeID;
@@ -101,6 +93,20 @@ namespace GLSOverviewWeb.Controllers
             _db.SaveChanges();
 
             return RedirectToAction("Index", "Home");
+        }
+
+        public static void ResetCars() {
+            using (var _db = new glsoverviewdbEntities()) {
+                DateTime lastAddedReg = _db.registrations.Max(r => r.Date);
+
+                if (lastAddedReg.Date < DateTime.Today) {
+                    foreach (car car in _db.cars) {
+                        car.Status = (int)StatusTypes.Arrived;
+                    }
+
+                    _db.SaveChanges();
+                }
+            }
         }
     }
 }
