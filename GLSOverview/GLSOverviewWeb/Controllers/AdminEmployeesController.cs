@@ -108,6 +108,9 @@ namespace GLSOverviewWeb.Controllers
         [HttpGet]
         public ActionResult Delete(int id)
         {
+            if (!LoginController.IsAdmin())
+                return View("~/Views/Login/Index.cshtml");
+
             using (glsoverviewdbEntities db = new glsoverviewdbEntities())
             {
                 employee emp = db.employees.Find(id);
@@ -115,7 +118,7 @@ namespace GLSOverviewWeb.Controllers
             }
         }
 
-        [HttpPost, ActionName("DeleteEmployee")]
+        [HttpPost, ActionName("Delete")]
         public ActionResult PostDelete(int id)
         {
             using (glsoverviewdbEntities db = new glsoverviewdbEntities())
@@ -123,8 +126,9 @@ namespace GLSOverviewWeb.Controllers
                 employee emp = db.employees.Find(id);
                 db.employees.Remove(emp);
                 db.SaveChanges();
-                return RedirectToAction("Index");
             }
+
+            return RedirectToAction("Index");
         }
     }
 }
