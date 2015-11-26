@@ -287,7 +287,6 @@
     <Content Include="Views\AdminCars\Delete.cshtml" />
     <Content Include="Views\AdminRegistrations\Create.cshtml" />
     <Content Include="Views\AdminRegistrations\Delete.cshtml" />
-    <Content Include="Views\AdminRegistrations\Details.cshtml" />
     <Content Include="Views\AdminRegistrations\Edit.cshtml" />
     <Content Include="Views\AdminRegistrations\Index.cshtml" />
     <None Include="Web.Debug.config">
