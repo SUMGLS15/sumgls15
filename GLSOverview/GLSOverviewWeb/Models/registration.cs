@@ -17,7 +17,7 @@ namespace GLSOverviewWeb.Models
         public int Id { get; set; }
         public string Comment { get; set; }
         public System.DateTime Date { get; set; }
-        public Nullable<bool> CommentHandled { get; set; }
+        public bool CommentHandled { get; set; }
         public int CarId { get; set; }
         public int EmployeeId { get; set; }
         public string Position { get; set; }

@@ -10,12 +10,8 @@ using GLSOverviewWeb.Models;
 
 namespace GLSOverviewWeb.Controllers
 {
-
-    // TODO Er kun lige blevet autooprettet. Gælder også Views. 
-
     public class AdminRegistrationsController : Controller
     {
-        
         private glsoverviewdbEntities db = new glsoverviewdbEntities();
 
         // GET: AdminRegistrations
@@ -23,21 +19,6 @@ namespace GLSOverviewWeb.Controllers
         {
             var registrations = db.registrations.Include(r => r.car).Include(r => r.employee);
             return View(registrations.ToList());
-        }
-
-        // GET: AdminRegistrations/Details/5
-        public ActionResult Details(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            registration registration = db.registrations.Find(id);
-            if (registration == null)
-            {
-                return HttpNotFound();
-            }
-            return View(registration);
         }
 
         // GET: AdminRegistrations/Create
@@ -53,7 +34,7 @@ namespace GLSOverviewWeb.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Date,Comment,CommentHandled,CarId,EmployeeId")] registration registration)
+        public ActionResult Create([Bind(Include = "Id,Comment,Date,CommentHandled,CarId,EmployeeId,Position")] registration registration)
         {
             if (ModelState.IsValid)
             {
@@ -89,7 +70,7 @@ namespace GLSOverviewWeb.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Date,Comment,CommentHandled,CarId,EmployeeId")] registration registration)
+        public ActionResult Edit([Bind(Include = "Id,Comment,Date,CommentHandled,CarId,EmployeeId,Position")] registration registration)
         {
             if (ModelState.IsValid)
             {

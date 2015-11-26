@@ -19,7 +19,7 @@
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
         <div class="form-group">
-            @Html.Label("Anything particular - hinges on the trunk door?")
+            @Html.Label("Anything particular - e.g. hinges on the trunk door?")
             <div class="col-md-10">
                 @Html.LabelFor(model => model.Comment, htmlAttributes: new { @for= "comment" })
                 @Html.TextAreaFor(model => model.Comment, new { @class = "form-control", @rows = "5", @id = "comment" })

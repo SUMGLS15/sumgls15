@@ -41,10 +41,10 @@ CREATE TABLE IF NOT EXISTS `Registration` (
   `Id` INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
   `Comment` VARCHAR(255),
   `Date` DATETIME NOT NULL,
-  `CommentHandled` BIT DEFAULT 0,
+  `CommentHandled` BIT NOT NULL DEFAULT 0,
   `CarId` INT NOT NULL, FOREIGN KEY (CarId) REFERENCES Car(Id),
   `EmployeeId` INT NOT NULL, FOREIGN KEY (EmployeeId) REFERENCES Employee(Id),
-  `ParkedAt` VARCHAR(45) NOT NULL DEFAULT "N/A"
+  `Position` VARCHAR(45) NOT NULL DEFAULT "N/A"
 );
 
 -- -----------------------------------------------------
@@ -71,7 +71,7 @@ INSERT INTO Employee (EmpNo, Name, Password, Admin)
 		("373", "Ruth", NULL, 0),
 		("834", "Piotr", NULL, 0);
 
-INSERT INTO Registration (Comment, Date, CommentHandled, CarId, EmployeeId, ParkedAt)
+INSERT INTO Registration (Comment, Date, CommentHandled, CarId, EmployeeId, Position)
 	VALUES
 		(NULL, '2015-11-14 12:00', 0, 3, 3, "Port 5")
 	

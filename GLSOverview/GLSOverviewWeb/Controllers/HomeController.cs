@@ -25,6 +25,8 @@ namespace GLSOverviewWeb.Controllers {
             return View(RM);
         }
 
+
+        // TODO SK Fjernes, men dele skal bruges i adminregistrations
         [HttpGet]
         public ActionResult IndexArchive(DateTime? showDate) {
             if (!LoginController.IsAdmin())
@@ -85,6 +87,7 @@ namespace GLSOverviewWeb.Controllers {
             reg.EmployeeId = rm.EmployeeID;
             reg.Date = DateTime.Now;
             reg.Comment = rm.Comment;
+            reg.Position = rm.Car.Position;
             _db.registrations.Add(reg);
 
             car car = _db.cars.Find(rm.CarID);

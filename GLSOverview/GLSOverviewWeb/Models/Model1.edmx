@@ -33,7 +33,7 @@
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Comment" Type="varchar" MaxLength="255" />
           <Property Name="Date" Type="datetime" Precision="0" Nullable="false" />
-          <Property Name="CommentHandled" Type="bit" />
+          <Property Name="CommentHandled" Type="bit" Nullable="false" />
           <Property Name="CarId" Type="int" Nullable="false" />
           <Property Name="EmployeeId" Type="int" Nullable="false" />
           <Property Name="Position" Type="varchar" MaxLength="45" Nullable="false" />
@@ -122,7 +122,7 @@
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Comment" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Name="Date" Type="DateTime" Nullable="false" />
-          <Property Name="CommentHandled" Type="Boolean" />
+          <Property Name="CommentHandled" Type="Boolean" Nullable="false" />
           <Property Name="CarId" Type="Int32" Nullable="false" />
           <Property Name="EmployeeId" Type="Int32" Nullable="false" />
           <Property Name="Position" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="false" />
