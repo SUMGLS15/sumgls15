@@ -19,28 +19,25 @@
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
         <div class="form-group">
-            @Html.Label("Anything particular - e.g. hinges on the trunk door?")
+            @Html.LabelFor(model => model.Comment)
             <div class="col-md-10">
-                @Html.LabelFor(model => model.Comment, htmlAttributes: new { @for= "comment" })
+                @Html.LabelFor(model => model.Comment, htmlAttributes: new { @for = "comment" })
                 @Html.TextAreaFor(model => model.Comment, new { @class = "form-control", @rows = "5", @id = "comment" })
-                @Html.ValidationMessageFor(model => model.Comment, "", new {@class = "text-danger"})
+                @Html.ValidationMessageFor(model => model.Comment, "", new { @class = "text-danger" })
             </div>
         </div>
-
-        
-            
-                <br/>
-            <ul>
-                @foreach (string checkpoint in Model.CheckList) {
-                    <li>@checkpoint</li>
-                }
-            </ul>
-
-            <br/>
+        <br />
+        <ul>
+            @foreach (string checkpoint in Model.CheckList)
+            {
+                <li>@checkpoint</li>
+            }
+        </ul>
+        <br />
         <div class="form-group">
             <div class="checkbox">
                 <label>
-                    <input class="checkbox" type="checkbox" onclick="EnableSubmit(this)"> Car @Model.Car.Licenseplate is empty and placed at port + <strong>@Model.Car.Position</strong>
+                    <input class="checkbox" type="checkbox" onclick="EnableSubmit(this)"> Car @Model.Car.Licenseplate is empty and placed at: <strong>@Model.Car.Position</strong>
                 </label>
             </div>
             <br />
