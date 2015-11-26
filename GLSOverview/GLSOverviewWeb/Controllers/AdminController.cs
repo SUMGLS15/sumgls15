@@ -15,11 +15,7 @@ namespace GLSOverviewWeb.Controllers {
                 return View("~/Views/Login/Index.cshtml");
             }
             using (glsoverviewdbEntities db = new glsoverviewdbEntities()) {
-                var registrationList = db.registrations.Include(r => r.car).ToList();
-                                        //join c in db.cars on r.CarId equals c.Id
-                                        //where r.Comment != null
-                                        //orderby r.Date descending
-                                        //select r).ToList();
+                var registrationList = db.registrations.Include(r => r.car).Include(e => e.employee).Where(r => r.Comment != null).Where(r => r.CommentHandled == false).ToList();
                 am.RegistrationList = registrationList;
             }
 
@@ -27,30 +23,17 @@ namespace GLSOverviewWeb.Controllers {
             return View(am);
         }
 
-        [HttpGet]
-        public ActionResult RegistrationDetails(int id) {
+        [HttpPost]
+        public ActionResult RegistrationChecked(int id) {
             if (!LoginController.IsAdmin()) {
                 return View("~/Views/Login/Index.cshtml");
             }
             using (glsoverviewdbEntities db = new glsoverviewdbEntities()) {
-                var reg = from r in db.registrations
-                          where r.CarId == id
-                          select r;
-                return View(reg);
+                registration reg = db.registrations.Find(id);
+                reg.CommentHandled = true;
+                db.SaveChanges();
             }
+            return RedirectToAction("Index");
         }
-
-        //[HttpPost]
-        //public ActionResult RegistrationDetails(registration reg) {
-        //    if (!LoginController.IsAdmin()) {
-        //        return View("~/Views/Login/Index.cshtml");
-        //    }
-        //    using (db) {
-        //        registration tempReg = db.registrations.Find(reg.Id);
-        //        tempReg.
-        //    }
-        //}
-
-
     }
 }
