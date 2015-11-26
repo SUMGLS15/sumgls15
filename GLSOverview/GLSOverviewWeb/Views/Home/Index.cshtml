@@ -1,15 +1,15 @@
 ﻿@using GLSOverviewWeb.Controllers
 
-@model GLSOverviewWeb.Viewmodels.RegistrationModel
+@model List<GLSOverviewWeb.Models.car>
 
 @{
     ViewBag.Title = "Overview";
 }
 
 <h2>Overview</h2>
-<hr/>
+<hr />
 
-@if (LoginController.IsLoggedIn())   
+@*@if (LoginController.IsLoggedIn())
 {
     using (Html.BeginForm("IndexArchive", "Home", FormMethod.Get, new { @class = "form-inline pull-right" }))
     {
@@ -24,13 +24,16 @@
         </div>
         <input type="submit" value="Show" class="btn btn-default btn-sm" />
     }
-}
+}*@
 
-        @*Kan bruges, hvis Show for date ikke skal være på samme linje som Arrived-labelen: *@
-        @*<div class="clearfix"></div>*@
+        @* Følgende div kan bruges, hvis Show for date ikke skal være på samme linje som Arrived-labelen: *@
+        @* <div class="clearfix"></div> *@
 
         <h3>
-            <span class="label label-success">Arrived<img src="~/Content/home.png" /></span>
+            <span class="label label-success">
+                Arrived
+                <img src="~/Content/home.png" />
+            </span>
         </h3>
 
         <div class="input-group input-group-sm">
@@ -42,36 +45,36 @@
             <thead>
                 <tr>
                     <th>
-                        @Html.DisplayNameFor(model => model.Licenseplate)
+                        @Html.DisplayNameFor(model => model[0].Licenseplate)
                     </th>
                     <th>
-                        @Html.DisplayNameFor(model => model.Hauler)
+                        @Html.DisplayNameFor(model => model[0].Hauler)
                     </th>
                     <th>
-                        @Html.DisplayNameFor(model => model.RouteNo)
+                        @Html.DisplayNameFor(model => model[0].RouteNo)
                     </th>
                     <th>
-                        @Html.DisplayNameFor(model => model.Car.Position)
+                        @Html.DisplayNameFor(model => model[0].Position)
                     </th>
                 </tr>
             </thead>
             <tbody class="searchable">
-                @foreach (var item in Model.Cars)
+                @foreach (var car in Model)
                 {
-                    if (item.Status == (int)StatusTypes.Arrived)
+                    if (car.Status == (int)StatusTypes.Arrived)
                     {
-                        <tr class="clickable" onclick="document.location = '@Url.Action("employeesLogin", new {CarID = item.Id})'">
+                        <tr class="clickable" onclick="document.location = '@Url.Action("EmployeesLogin", new {CarID = car.Id})'">
                             <td>
-                                <h4> @Html.DisplayFor(modelItem => item.Licenseplate)</h4>
+                                @Html.DisplayFor(modelItem => car.Licenseplate)
                             </td>
                             <td>
-                                <h4> @Html.DisplayFor(modelitem => item.Hauler)</h4>
+                                @Html.DisplayFor(modelitem => car.Hauler)
                             </td>
                             <td>
-                                <h4> @Html.DisplayFor(modelItem => item.RouteNo)</h4>
+                                @Html.DisplayFor(modelItem => car.RouteNo)
                             </td>
                             <td>
-                                <h4> @Html.DisplayFor(modelItem => item.Position)</h4>
+                                @Html.DisplayFor(modelItem => car.Position)
                             </td>
                         </tr>
                     }
@@ -79,6 +82,7 @@
             </tbody>
         </table>
         <br />
+
         <h3>
             <span class="label label-danger">
                 Departed
@@ -89,36 +93,36 @@
             <thead>
                 <tr>
                     <th>
-                        @Html.DisplayNameFor(model => model.Licenseplate)
+                        @Html.DisplayNameFor(model => model[0].Licenseplate)
                     </th>
                     <th>
-                        @Html.DisplayNameFor(model => model.Hauler)
+                        @Html.DisplayNameFor(model => model[0].Hauler)
                     </th>
                     <th>
-                        @Html.DisplayNameFor(model => model.RouteNo)
+                        @Html.DisplayNameFor(model => model[0].RouteNo)
                     </th>
                     <th>
-                        @Html.DisplayNameFor(model => model.Car.Position)
+                        @Html.DisplayNameFor(model => model[0].Position)
                     </th>
                 </tr>
             </thead>
             <tbody>
-                @foreach (var item in Model.Cars)
+                @foreach (var car in Model)
                 {
-                    if (item.Status == (int)StatusTypes.Departed)
+                    if (car.Status == (int)StatusTypes.Departed)
                     {
                         <tr>
                             <td>
-                                @Html.DisplayFor(modelItem => item.Licenseplate)
+                                @Html.DisplayFor(modelItem => car.Licenseplate)
                             </td>
                             <td>
-                                @Html.DisplayFor(modelItem => item.Hauler)
+                                @Html.DisplayFor(modelItem => car.Hauler)
                             </td>
                             <td>
-                                @Html.DisplayFor(modelItem => item.RouteNo)
+                                @Html.DisplayFor(modelItem => car.RouteNo)
                             </td>
                             <td>
-                                <h4> @Html.DisplayFor(modelItem => item.Position)</h4>
+                                @Html.DisplayFor(modelItem => car.Position)
                             </td>
                         </tr>
                     }
@@ -136,36 +140,36 @@
             <thead>
                 <tr>
                     <th>
-                        @Html.DisplayNameFor(model => model.Licenseplate)
+                        @Html.DisplayNameFor(model => model[0].Licenseplate)
                     </th>
                     <th>
-                        @Html.DisplayNameFor(model => model.Hauler)
+                        @Html.DisplayNameFor(model => model[0].Hauler)
                     </th>
                     <th>
-                        @Html.DisplayNameFor(model => model.RouteNo)
+                        @Html.DisplayNameFor(model => model[0].RouteNo)
                     </th>
                     <th>
-                        @Html.DisplayNameFor(model => model.Car.Position)
+                        @Html.DisplayNameFor(model => model[0].Position)
                     </th>
                 </tr>
             </thead>
             <tbody>
-                @foreach (var item in Model.Cars)
+                @foreach (var car in Model)
                 {
-                    if (item.Status == (int)StatusTypes.Parked)
+                    if (car.Status == (int)StatusTypes.Parked)
                     {
                         <tr>
                             <td>
-                                @Html.DisplayFor(modelItem => item.Licenseplate)
+                                @Html.DisplayFor(modelItem => car.Licenseplate)
                             </td>
                             <td>
-                                @Html.DisplayFor(modelItem => item.Hauler)
+                                @Html.DisplayFor(modelItem => car.Hauler)
                             </td>
                             <td>
-                                @Html.DisplayFor(modelItem => item.RouteNo)
+                                @Html.DisplayFor(modelItem => car.RouteNo)
                             </td>
                             <td>
-                                <h4> @Html.DisplayFor(modelItem => item.Position)</h4>
+                                @Html.DisplayFor(modelItem => car.Position)
                             </td>
                         </tr>
                     }
