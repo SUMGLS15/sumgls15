@@ -1,0 +1,32 @@
+﻿@model GLSOverviewWeb.Viewmodels.RegistrationModel
+
+@{
+    ViewBag.Title = "Park a car (Step 1/2)";
+}
+
+<h2>@ViewBag.Title</h2>
+<h3>Choose an Employee for registration of car  @Model.Car.Licenseplate</h3>
+<br/>
+<h4>Recently active employees: </h4>
+<table class="table table-striped table-hover">
+    @foreach (var employee in Model.Employees.Take(5))
+    {
+        <tr class="clickable" onclick="document.location = '@Url.Action("ParkCarStep2", new { EmpID = employee.Id, CarID = Model.Car.Id })'">
+            <td style="text-align: center">
+                <h4>@employee.Name</h4> 
+            </td>
+        </tr>
+    }
+</table>
+<br/>
+<h4>All employees: </h4>
+<table class="table table-striped table-hover">
+    @foreach (var employee in Model.Employees.OrderBy(e => e.Name))
+    {
+        <tr class="clickable" onclick="document.location = '@Url.Action("ParkCarStep2", new { EmpID = employee.Id, CarID = Model.Car.Id})'">
+            <td style="text-align: center">
+                <h4>@employee.Name</h4>
+            </td>
+        </tr>
+    }
+</table>

@@ -18,7 +18,7 @@ namespace GLSOverviewWeb.Viewmodels
 
         public string Comment { get; set; }
 
-        // Brugt i Home/RegisterCarChecked view til at vise liste over checks
+        // Brugt i Home/ParkCarStep2 view til at vise liste over checks
         public string[] CheckList = {
             "checked cabin and trunk for parcels", 
             "closed all windows", 

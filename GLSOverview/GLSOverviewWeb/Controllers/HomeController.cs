@@ -64,7 +64,7 @@ namespace GLSOverviewWeb.Controllers
         //}
 
         [HttpGet]
-        public ActionResult EmployeesLogin(int? carId)
+        public ActionResult ParkCarStep1(int? carId)
         {
             if (carId == null)
                 return RedirectToAction("Index");
@@ -87,7 +87,7 @@ namespace GLSOverviewWeb.Controllers
         }
 
         [HttpGet]
-        public ActionResult RegisterCarChecked(int? carId, int? empId)
+        public ActionResult ParkCarStep2(int? carId, int? empId)
         {
             if (carId == null || empId == null)
                 return RedirectToAction("Index");
@@ -104,7 +104,7 @@ namespace GLSOverviewWeb.Controllers
         }
 
         [HttpPost]
-        public ActionResult RegisterCarChecked(RegistrationModel rm)
+        public ActionResult ParkCarStep2(RegistrationModel rm)
         {
             var reg = new registration
             {

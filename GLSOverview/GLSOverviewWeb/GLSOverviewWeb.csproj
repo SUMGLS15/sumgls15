@@ -273,10 +273,10 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Home\EmployeesLogin.cshtml" />
+    <Content Include="Views\Home\ParkCarStep1.cshtml" />
     <Content Include="Views\AdminCars\Index.cshtml" />
     <Content Include="Views\AdminCars\Edit.cshtml" />
-    <Content Include="Views\Home\RegisterCarChecked.cshtml" />
+    <Content Include="Views\Home\ParkCarStep2.cshtml" />
     <Content Include="Views\AdminEmployees\Index.cshtml" />
     <Content Include="Views\AdminEmployees\Create.cshtml" />
     <Content Include="Views\AdminEmployees\Edit.cshtml" />

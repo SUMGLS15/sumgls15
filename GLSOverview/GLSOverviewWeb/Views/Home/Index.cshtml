@@ -63,7 +63,7 @@
                 {
                     if (car.Status == (int)StatusTypes.Arrived)
                     {
-                        <tr class="clickable" onclick="document.location = '@Url.Action("EmployeesLogin", new {CarID = car.Id})'">
+                        <tr class="clickable" onclick="document.location = '@Url.Action("ParkCarStep1", new { CarID = car.Id })'">
                             <td>
                                 @Html.DisplayFor(modelItem => car.Licenseplate)
                             </td>
