@@ -9,17 +9,7 @@
 
 @Html.ActionLink("Back to Administration", "Index", "Admin", null, new { @class = "btn btn-default" })
 
-@using (Html.BeginForm(null, null, null, FormMethod.Get, new { @class = "form-inline pusssssssll-right" }))
-{
-    <div class="form-group">
-        <label class="sr-only" for="ShowDate">Show for date: </label>
-        <div class="input-group input-group-sm">
-            <div class="input-group-addon">Show for date: </div>
-            <input type="datetime" class="form-control datepicker" placeholder="Click to filter on a date" />
-        </div>
-    </div>
-    <input type="submit" value="Show" class="btn btn-default btn-sm" />
-}
+
 
 <table class="table table-striped">
     <thead>
