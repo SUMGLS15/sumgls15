@@ -285,9 +285,6 @@
     <Content Include="Views\Login\Index.cshtml" />
     <Content Include="Views\AdminCars\Create.cshtml" />
     <Content Include="Views\AdminCars\Delete.cshtml" />
-    <Content Include="Views\AdminRegistrations\Create.cshtml" />
-    <Content Include="Views\AdminRegistrations\Delete.cshtml" />
-    <Content Include="Views\AdminRegistrations\Edit.cshtml" />
     <Content Include="Views\AdminRegistrations\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

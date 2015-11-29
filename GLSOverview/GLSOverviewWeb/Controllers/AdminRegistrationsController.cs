@@ -12,22 +12,17 @@ namespace GLSOverviewWeb.Controllers
 {
     public class AdminRegistrationsController : Controller
     {
-        private glsoverviewdbEntities db = new glsoverviewdbEntities();
-
         // GET: AdminRegistrations
         public ActionResult Index()
         {
-            var registrations = db.registrations.Include(r => r.car).Include(r => r.employee);
-            return View(registrations.ToList());
-        }
+            if (!LoginController.IsAdmin())
+                return View("~/Views/Login/Index.cshtml");
 
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
+            using (var db = new glsoverviewdbEntities())
             {
-                db.Dispose();
+                var registrations = db.registrations.Include(r => r.car).Include(r => r.employee);
+                return View(registrations.ToList());
             }
-            base.Dispose(disposing);
         }
     }
 }

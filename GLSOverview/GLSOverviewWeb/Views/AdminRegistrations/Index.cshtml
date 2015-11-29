@@ -14,35 +14,35 @@
 <table class="table table-striped">
     <thead>
         <tr>
-            <th>Comment&nbsp;OK</th>
-            <th>@Html.DisplayNameFor(model => model.Comment)</th>
             <th>@Html.DisplayNameFor(model => model.Date)</th>
-            <th>@Html.DisplayNameFor(model => model.Position)</th>
             <th>@Html.DisplayNameFor(model => model.car.Licenseplate)</th>
+            <th>@Html.DisplayNameFor(model => model.Position)</th>
             <th>@Html.DisplayNameFor(model => model.employee.Name)</th>
+            <th>@Html.DisplayNameFor(model => model.Comment)</th>
+            <th>Comment&nbsp;OK</th>
         </tr>
     </thead>
 
     @foreach (var item in Model)
     {
         <tr>
-            <td style="text-align: center">
-                @Html.DisplayFor(modelItem => item.CommentHandled)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Comment)
-            </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Date)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Position)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.car.Licenseplate)
             </td>
             <td>
+                @Html.DisplayFor(modelItem => item.Position)
+            </td>
+            <td>
                 @Html.DisplayFor(modelItem => item.employee.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Comment)
+            </td>
+            <td style="text-align: center">
+                @Html.DisplayFor(modelItem => item.CommentHandled)
             </td>
         </tr>
     }
