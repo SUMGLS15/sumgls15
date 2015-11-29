@@ -1,63 +1,64 @@
 ﻿@model IEnumerable<GLSOverviewWeb.Models.registration>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Manage Registrations";
 }
 
-<h2>Index</h2>
+<h2>@ViewBag.Title</h2>
+<hr />
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Comment)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Date)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.CommentHandled)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Position)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.car.Licenseplate)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.employee.EmpNo)
-        </th>
-        <th></th>
-    </tr>
+@Html.ActionLink("Back to Administration", "Index", "Admin", null, new { @class = "btn btn-default" })
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Comment)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Date)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CommentHandled)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Position)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.car.Licenseplate)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.employee.EmpNo)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
-        </td>
-    </tr>
+@using (Html.BeginForm(null, null, null, FormMethod.Get, new { @class = "form-inline pusssssssll-right" }))
+{
+    <div class="form-group">
+        <label class="sr-only" for="ShowDate">Show for date: </label>
+        <div class="input-group input-group-sm">
+            <div class="input-group-addon">Show for date: </div>
+            <input type="datetime" class="form-control datepicker" placeholder="Click to filter on a date" />
+        </div>
+    </div>
+    <input type="submit" value="Show" class="btn btn-default btn-sm" />
 }
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Comment&nbsp;OK</th>
+            <th>@Html.DisplayNameFor(model => model.Comment)</th>
+            <th>@Html.DisplayNameFor(model => model.Date)</th>
+            <th>@Html.DisplayNameFor(model => model.Position)</th>
+            <th>@Html.DisplayNameFor(model => model.car.Licenseplate)</th>
+            <th>@Html.DisplayNameFor(model => model.employee.Name)</th>
+        </tr>
+    </thead>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td style="text-align: center">
+                @Html.DisplayFor(modelItem => item.CommentHandled)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Comment)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Date)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Position)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.car.Licenseplate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.employee.Name)
+            </td>
+        </tr>
+    }
 
 </table>
+
+
+
+<p>Note: Registrations are created when cars are parked on the Overview page<p />

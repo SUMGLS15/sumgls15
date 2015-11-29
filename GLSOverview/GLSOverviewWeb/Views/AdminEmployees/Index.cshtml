@@ -4,7 +4,7 @@
     ViewBag.Title = "Manage Employees";
 }
 
-<h2>Manage Employees</h2>
+<h2>@ViewBag.Title</h2>
 <hr />
 
 <input type="button" class="btn btn-default" value="Back to Administration" onclick="location.href='@Url.Action("Index", "Admin")'" />
@@ -24,7 +24,7 @@
         <tr>
             <td>@emp.EmpNo</td>
             <td>@emp.Name</td>
-            <td>
+            <td style="white-space: nowrap">
                 @Html.ActionLink("Edit", "Edit", new { id = emp.Id }, new { @class = "btn btn-primary active btn-xs" })
                 @Html.ActionLink("Delete", "Delete", new { id = emp.Id }, new { @class = "btn btn-danger active btn-xs" })
             </td>

@@ -26,43 +26,6 @@ namespace GLSOverviewWeb.Controllers
             return View(_db.cars.ToList());
         }
 
-
-        //// TODO SK Fjernes, men dele skal bruges i adminregistrations
-        //[HttpGet]
-        //public ActionResult IndexArchive(DateTime? showDate)
-        //{
-        //    if (!LoginController.IsAdmin())
-        //        return View("~/Views/Login/Index.cshtml");
-
-        //    if (showDate == null)
-        //        return View("Index");
-
-        //    var RM = new RegistrationModel();
-        //    RM.Cars = _db.cars.ToList();
-
-        //    foreach (var car in RM.Cars)
-        //    {
-        //        car.Status = (int)StatusTypes.Arrived;
-        //    }
-
-        //    var archiveDateStart = showDate.Value.Date;
-        //    var archiveDateEnd = showDate.Value.Date.AddDays(1).AddSeconds(-1);
-
-        //    var registrations = _db.registrations.Where(r =>
-        //        r.Date >= archiveDateStart &&
-        //        r.Date <= archiveDateEnd
-        //        ).ToList();
-
-        //    foreach (var registration in registrations)
-        //    {
-        //        var car = RM.Cars.FirstOrDefault(c => c.Id == registration.CarId);
-        //        if (car != null)
-        //            car.Status = (int)StatusTypes.Parked;
-        //    }
-
-        //    return View("Index", RM);
-        //}
-
         [HttpGet]
         public ActionResult ParkCarStep1(int? carId)
         {
@@ -103,20 +66,26 @@ namespace GLSOverviewWeb.Controllers
             }
         }
 
-        [HttpPost]
-        public ActionResult ParkCarStep2(RegistrationModel rm)
+        [HttpPost, ActionName("ParkCarStep2")]
+        public ActionResult PostParkCarStep2(int? carId, int? empId, string comment)
         {
-            var reg = new registration
+            if (carId == null || empId == null)
+                return RedirectToAction("Index");
+
+            var car = _db.cars.Find(carId);
+            if (car == null)
+                return HttpNotFound();
+
+            var reg = new registration()
             {
-                CarId = rm.Car.Id,
-                EmployeeId = rm.Employee.Id,
+                CarId = car.Id,
+                EmployeeId = empId.Value,
                 Date = DateTime.Now,
-                Comment = rm.Comment,
-                Position = rm.Car.Position
+                Comment = comment,
+                Position = car.Position
             };
             _db.registrations.Add(reg);
-
-            var car = _db.cars.Find(rm.Car.Id);
+            
             car.Status = (int)StatusTypes.Parked;
 
             _db.SaveChanges();
@@ -134,7 +103,7 @@ namespace GLSOverviewWeb.Controllers
 
                 foreach (var car in _db.cars)
                     car.Status = (int)StatusTypes.Arrived;
-                
+
                 _db.SaveChanges();
             }
         }

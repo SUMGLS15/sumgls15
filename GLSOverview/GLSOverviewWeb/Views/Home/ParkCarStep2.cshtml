@@ -11,6 +11,9 @@
 {
     @Html.AntiForgeryToken()
 
+    @Html.HiddenFor(m => m.Car.Id)
+    @Html.HiddenFor(m => m.Employee.Id)
+
     <div class="form-horizontal">
         <h4>Car: @Model.Car.Licenseplate</h4>
         <h4>Employee: @Model.Employee.Name</h4>
@@ -25,12 +28,12 @@
                     <li>@checkpoint</li>
                 }
             </ul>
-            
+
             <div class="form-group">
                 <div class="col-md-10">
                     @Html.LabelFor(model => model.Comment)
-                    @Html.TextAreaFor(model => model.Comment, new {@class = "form-control", @rows = "5", @id = "comment", @placeholder = "\"Headlight broken\", \"Parked at the fence because ...\" etc."})
-                    @Html.ValidationMessageFor(model => model.Comment, "", new {@class = "text-danger"})
+                    @Html.TextAreaFor(model => model.Comment, new { @class = "form-control", @rows = "5", @id = "comment", @placeholder = "\"Headlight broken\", \"Parked at the fence because ...\" etc." })
+                    @Html.ValidationMessageFor(model => model.Comment, "", new { @class = "text-danger" })
                 </div>
             </div>
 

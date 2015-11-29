@@ -1,10 +1,11 @@
-﻿@model GLSOverviewWeb.Models.car
+﻿
+@model GLSOverviewWeb.Models.car
 
 @{
     ViewBag.Title = "Edit Car";
 }
 
-<h2>Edit Car <small>- @Model.Licenseplate</small></h2>
+<h2>@ViewBag.Title <small>- @Model.Licenseplate</small></h2>
 <hr />
 
 @using (Html.BeginForm())

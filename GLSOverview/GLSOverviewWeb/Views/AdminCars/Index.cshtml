@@ -1,16 +1,14 @@
-﻿@using GLSOverviewWeb.Controllers
-
-@model IEnumerable<GLSOverviewWeb.Models.car>
+﻿@model IEnumerable<GLSOverviewWeb.Models.car>
 
 @{
     ViewBag.Title = "Manage Cars";
 }
 
-<h2>Manage Cars</h2>
-<hr/>
+<h2>@ViewBag.Title</h2>
+<hr />
 
-<input type="button" class="btn btn-default" value="Back to Administration" onclick="location.href='@Url.Action("Index", "Admin")'" />
-<input type="button" class="btn btn-primary active" value="Create New Car" onclick="location.href='@Url.Action("Create", "AdminCars")'" />
+@Html.ActionLink("Back to Administration", "Index", "Admin", null, new { @class = "btn btn-default" })
+@Html.ActionLink("Create New Car", "Create", "AdminCars", null, new { @class = "btn btn-primary active" })
 
 <table class="table table-striped">
     <thead>
@@ -19,7 +17,7 @@
             <th>@Html.DisplayNameFor(model => model.Hauler)</th>
             <th>@Html.DisplayNameFor(model => model.RouteNo)</th>
             <th>@Html.DisplayNameFor(model => model.Position)</th>
-            <th>Action</th>
+            <th></th>
         </tr>
     </thead>
 
@@ -38,9 +36,9 @@
             <td>
                 @Html.DisplayFor(modelItem => car.Position)
             </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new {id = car.Id}, new {@class = "btn btn-primary active btn-xs"})
-                @Html.ActionLink("Delete", "Delete", new {id = car.Id}, new {@class = "btn btn-danger active btn-xs"})
+            <td style="white-space: nowrap">
+                @Html.ActionLink("Edit", "Edit", new { id = car.Id }, new { @class = "btn btn-primary active btn-xs" })
+                @Html.ActionLink("Delete", "Delete", new { id = car.Id }, new { @class = "btn btn-danger active btn-xs" })
             </td>
         </tr>
     }

@@ -5,16 +5,16 @@
 }
 
 <h2>Administration</h2>
-<p>Welcome back, @Html.DisplayFor(model => model.Employee.Name)</p>
 <hr />
-
+<p>Welcome back, @Html.DisplayFor(model => model.Employee.Name)</p>
 <a href="@Url.Action("Index", "AdminCars")" class="btn btn-primary">Manage Cars</a>
 <a href="@Url.Action("Index", "AdminEmployees")" class="btn btn-primary">Manage Employees</a>
 <a href="@Url.Action("Index", "AdminRegistrations")" class="btn btn-primary">Manage Registrations</a>
 
-<br/>
-<br/>
-<br />
+
+
+
+<hr />
 @if (Model.RegistrationList.Count() > 0) {
 <h4><span class="label label-warning">List of Registrations with notifications</span></h4>
     <table>
