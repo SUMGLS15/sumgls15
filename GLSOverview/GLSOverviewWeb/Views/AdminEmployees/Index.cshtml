@@ -15,6 +15,7 @@
         <tr>
             <th>@Html.DisplayNameFor(model => model.EmpNo)</th>
             <th>@Html.DisplayNameFor(model => model.Name)</th>
+            <th style="text-align: center">@Html.DisplayNameFor(model => model.Admin)</th>
             <th>Action</th>
         </tr>
     </thead>
@@ -24,6 +25,7 @@
         <tr>
             <td>@emp.EmpNo</td>
             <td>@emp.Name</td>
+            <td style="text-align: center">@Html.DisplayFor(m => emp.Admin)</td>
             <td style="white-space: nowrap">
                 @Html.ActionLink("Edit", "Edit", new { id = emp.Id }, new { @class = "btn btn-primary active btn-xs" })
                 @Html.ActionLink("Delete", "Delete", new { id = emp.Id }, new { @class = "btn btn-danger active btn-xs" })
