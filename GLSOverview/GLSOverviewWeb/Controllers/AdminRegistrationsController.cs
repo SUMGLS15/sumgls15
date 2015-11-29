@@ -24,5 +24,25 @@ namespace GLSOverviewWeb.Controllers
                 return View(registrations.ToList());
             }
         }
+
+        [HttpPost]
+        public ActionResult ToggleCommentHandled(int? id)
+        {
+            if (!LoginController.IsAdmin())
+                return View("~/Views/Login/Index.cshtml");
+
+            using (var db = new glsoverviewdbEntities())
+            {
+                var reg = db.registrations.Find(id);
+                if (reg == null)
+                    return HttpNotFound();
+
+                reg.CommentHandled = !reg.CommentHandled;
+                db.SaveChanges();
+            }
+
+
+            return RedirectToAction("Index");
+        }
     }
 }

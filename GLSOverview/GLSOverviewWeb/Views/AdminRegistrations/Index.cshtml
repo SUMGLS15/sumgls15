@@ -42,7 +42,17 @@
                 @Html.DisplayFor(modelItem => item.Comment)
             </td>
             <td style="text-align: center">
-                @Html.DisplayFor(modelItem => item.CommentHandled)
+                @if (item.Comment == "")
+                {
+                    @Html.DisplayFor(modelItem => item.CommentHandled)
+                }
+                else
+                {
+                    <form method="POST" action="@Url.Action("ToggleCommentHandled", "AdminRegistrations")">
+                        @Html.Hidden("id", item.Id)
+                        @Html.EditorFor(modelItem => item.CommentHandled, new { htmlAttributes = new { @onclick = "this.form.submit();" } })
+                    </form>
+                }
             </td>
         </tr>
     }

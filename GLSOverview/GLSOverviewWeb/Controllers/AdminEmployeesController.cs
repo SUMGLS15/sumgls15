@@ -19,7 +19,7 @@ namespace GLSOverviewWeb.Controllers
                 return View("~/Views/Login/Index.cshtml");
 
             List<employee> resList = new List<employee>();
-            using (glsoverviewdbEntities db = new glsoverviewdbEntities())
+            using (var db = new glsoverviewdbEntities())
             {
                 var query = from e in db.employees
                             orderby e.Name descending
