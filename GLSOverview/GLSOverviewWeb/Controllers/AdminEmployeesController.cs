@@ -18,7 +18,7 @@ namespace GLSOverviewWeb.Controllers
             if (!LoginController.IsAdmin())
                 return View("~/Views/Login/Index.cshtml");
 
-            List<employee> resList = new List<employee>();
+            var resList = new List<employee>();
             using (var db = new glsoverviewdbEntities())
             {
                 var query = from e in db.employees
@@ -46,6 +46,9 @@ namespace GLSOverviewWeb.Controllers
         {
             if (!LoginController.IsAdmin())
                 return View("~/Views/Login/Index.cshtml");
+
+            if (emp == null)
+                return HttpNotFound();
 
             using (glsoverviewdbEntities db = new glsoverviewdbEntities())
             {
@@ -84,7 +87,6 @@ namespace GLSOverviewWeb.Controllers
             if (!LoginController.IsAdmin())
                 return View("~/Views/Login/Index.cshtml");
 
-
             using (glsoverviewdbEntities db = new glsoverviewdbEntities())
             {
                 employee emp = db.employees.Find(id);
@@ -95,6 +97,12 @@ namespace GLSOverviewWeb.Controllers
         [HttpPost]
         public ActionResult Edit(employee emp)
         {
+            if (!LoginController.IsAdmin())
+                return View("~/Views/Login/Index.cshtml");
+
+            if (emp == null)
+                return HttpNotFound();
+
             using (glsoverviewdbEntities db = new glsoverviewdbEntities())
             {
                 emp.Password = Sha1.Encode(emp.Password);
@@ -106,10 +114,13 @@ namespace GLSOverviewWeb.Controllers
         }
 
         [HttpGet]
-        public ActionResult Delete(int id)
+        public ActionResult Delete(int? id)
         {
             if (!LoginController.IsAdmin())
                 return View("~/Views/Login/Index.cshtml");
+
+            if (id == null)
+                return HttpNotFound();
 
             using (glsoverviewdbEntities db = new glsoverviewdbEntities())
             {
@@ -119,8 +130,14 @@ namespace GLSOverviewWeb.Controllers
         }
 
         [HttpPost, ActionName("Delete")]
-        public ActionResult PostDelete(int id)
+        public ActionResult PostDelete(int? id)
         {
+            if (!LoginController.IsAdmin())
+                return View("~/Views/Login/Index.cshtml");
+
+            if (id == null)
+                return HttpNotFound();
+
             using (glsoverviewdbEntities db = new glsoverviewdbEntities())
             {
                 employee emp = db.employees.Find(id);

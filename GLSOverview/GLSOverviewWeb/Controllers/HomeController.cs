@@ -30,7 +30,7 @@ namespace GLSOverviewWeb.Controllers
         public ActionResult ParkCarStep1(int? carId)
         {
             if (carId == null)
-                return RedirectToAction("Index");
+                return HttpNotFound();
 
             using (_db)
             {
@@ -53,7 +53,7 @@ namespace GLSOverviewWeb.Controllers
         public ActionResult ParkCarStep2(int? carId, int? empId)
         {
             if (carId == null || empId == null)
-                return RedirectToAction("Index");
+                return HttpNotFound();
 
             using (_db)
             {
@@ -70,7 +70,7 @@ namespace GLSOverviewWeb.Controllers
         public ActionResult PostParkCarStep2(int? carId, int? empId, string comment)
         {
             if (carId == null || empId == null)
-                return RedirectToAction("Index");
+                return HttpNotFound();
 
             var car = _db.cars.Find(carId);
             if (car == null)
@@ -93,7 +93,8 @@ namespace GLSOverviewWeb.Controllers
             return RedirectToAction("Index", "Home");
         }
 
-        // TODO Fix: Is run on EVERY page view, until a car is parked on that day?
+        // NB: This code is run on EVERY page view, until a car is parked on that day!
+        // Should only run once pr. day, but we couldn't fix this in time.
         public static void ResetCars()
         {
             using (var _db = new glsoverviewdbEntities())

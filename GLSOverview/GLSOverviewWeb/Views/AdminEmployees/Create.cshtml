@@ -48,8 +48,8 @@
 
         <div class="form-group">
             <div class="col-md-11 col-md-offset-1">
-                <input type="button" class="btn btn-default" value="Cancel" onclick="location.href='@Url.Action("Index", "AdminEmployees")'" />
-                <input type="submit" value="Create Employee" class="btn btn-primary active" />
+                @Html.ActionLink("Cancel", "Index", null, new { @class = "btn btn-default" })
+                <input type="submit" value="Create Employee" class="btn btn-primary active"/>
             </div>
         </div>
     </div>

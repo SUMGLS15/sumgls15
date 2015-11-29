@@ -21,20 +21,30 @@ namespace GLSOverviewWeb.Controllers
         [HttpPost]
         public ActionResult Index(employee employee)
         {
+            if (employee == null)
+                return HttpNotFound();
+
             employee.Password = Sha1.Encode(employee.Password);
 
             var login = _db.employees
                            .FirstOrDefault(e => e.EmpNo == employee.EmpNo &&
                                                 e.Password == employee.Password);
+
             if (login == null)
             {
                 ModelState.AddModelError("password", "The username or password is incorrect");
-                return View(); 
+                return View();
             }
-            Session["User"] = login; // Gad vide om en hacker kan hente sessionen ud og lægge sessionen ind senere?
+
+            Session["User"] = login;
 
             return RedirectToAction("Index", "Admin");
-            // TODO Kunne være rart at lave noget "redirect til hvor du kom fra"
+        }
+
+        public ActionResult Logout()
+        {
+            Session["User"] = null;
+            return RedirectToAction("Index", "Home");
         }
 
         public static bool IsLoggedIn()
@@ -52,13 +62,6 @@ namespace GLSOverviewWeb.Controllers
         public static employee CurrentUser()
         {
             return (employee)System.Web.HttpContext.Current.Session["User"];
-        }
-
-
-        public ActionResult Logout()
-        {
-            Session["User"] = null;
-            return RedirectToAction("Index", "Home");
         }
     }
 }

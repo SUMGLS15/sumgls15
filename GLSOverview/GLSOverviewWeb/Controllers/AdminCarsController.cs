@@ -51,7 +51,7 @@ namespace GLSOverviewWeb.Controllers
                 return View("~/Views/Login/Index.cshtml");
 
             if (id == null)
-                return RedirectToAction("Index"); // TODO msg?
+                return RedirectToAction("Index");
 
             using (_db)
             {
@@ -80,8 +80,6 @@ namespace GLSOverviewWeb.Controllers
 
                 return RedirectToAction("Index", new { succes = 1 });
             }
-
-
         }
 
         [HttpGet]

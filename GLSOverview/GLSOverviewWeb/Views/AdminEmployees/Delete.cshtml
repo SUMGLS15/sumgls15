@@ -28,7 +28,7 @@ Are you sure you want to permanently delete this employee?
     @Html.AntiForgeryToken()
 
     <div class="col-md-11 col-md-offset-1">
-        <input type="button" class="btn btn-default" value="Cancel" onclick="location.href='@Url.Action("Index", "AdminEmployees")'" />
-        <input type="submit" class="btn btn-danger active" value="Delete Employee" />
+        @Html.ActionLink("Cancel", "Index", null, new { @class = "btn btn-default" })
+        <input type="submit" class="btn btn-danger active" value="Delete Employee"/>
     </div>
 }

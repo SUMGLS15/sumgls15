@@ -33,10 +33,13 @@ namespace GLSOverviewWeb.Controllers
         }
 
         [HttpPost]
-        public ActionResult RegistrationChecked(int id)
+        public ActionResult RegistrationChecked(int? id)
         {
             if (!LoginController.IsAdmin())
                 return View("~/Views/Login/Index.cshtml");
+
+            if (id == null)
+                return HttpNotFound();
 
             using (var db = new glsoverviewdbEntities())
             {

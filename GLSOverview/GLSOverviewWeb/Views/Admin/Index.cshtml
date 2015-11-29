@@ -6,36 +6,46 @@
 
 <h2>Administration</h2>
 <hr />
+
 <p>Welcome back, @Html.DisplayFor(model => model.Employee.Name)</p>
 <a href="@Url.Action("Index", "AdminCars")" class="btn btn-primary">Manage Cars</a>
 <a href="@Url.Action("Index", "AdminEmployees")" class="btn btn-primary">Manage Employees</a>
 <a href="@Url.Action("Index", "AdminRegistrations")" class="btn btn-primary">Manage Registrations</a>
-
-
-
-
 <hr />
-@if (Model.RegistrationList.Count() > 0) {
-    <h4><span class="label label-warning">List of Registrations with notifications</span></h4>
+
+@if (!Model.RegistrationList.Any())
+{
+    <h4>
+        <span class="label label-success">No registrations to handle</span>
+    </h4>
+}
+else
+{
+    <h4>
+        <span class="label label-warning">List of Registrations with notifications</span>
+    </h4>
     <div class="well well-lg">
         <table>
-            @foreach (var reg in Model.RegistrationList) {
+            @foreach (var reg in Model.RegistrationList)
+            {
                 <tr>
-                    <th><h3>@Html.DisplayFor(modelItem => reg.car.RouteNo) - @Html.DisplayFor(modelItem => reg.car.Licenseplate)</h3></th>
+                    <th>
+                        <div style="font-size: x-large">@Html.DisplayFor(modelItem => reg.car.RouteNo) - @Html.DisplayFor(modelItem => reg.car.Licenseplate) - @Html.DisplayFor(modelItem => reg.car.Hauler) - Parked at @reg.Position</div>
+                    </th>
                 </tr>
                 <tr>
-                    <td>Parked at @reg.Position</td>
+                    <td style="padding-bottom: 10px;">@Html.DisplayFor(modelItem => reg.Comment)</td>
                 </tr>
                 <tr>
-                    <td><p>@Html.DisplayFor(modelItem => reg.Comment)</p></td>
-                </tr>
-                <tr>
-                    <td><small>Registered by <strong>@reg.employee.Name</strong> on @reg.Date</small></td>
+                    <td style="padding-bottom: 10px;">
+                        <small>Registered by <strong>@reg.employee.Name</strong> on @reg.Date</small>
+                    </td>
                 </tr>
                 <tr>
                     <td>
                         <strong>
-                            @using (Html.BeginForm("RegistrationChecked", "Admin", new { id = reg.Id })) {
+                            @using (Html.BeginForm("RegistrationChecked", "Admin", new { id = reg.Id }))
+                            {
                                 <input type="submit" value="OK!" />
                             }
                         </strong>
@@ -44,8 +54,4 @@
             }
         </table>
     </div>
-
-}
-else {
-    <h4><span class="label label-success">No registrations to handle</span></h4>
 }

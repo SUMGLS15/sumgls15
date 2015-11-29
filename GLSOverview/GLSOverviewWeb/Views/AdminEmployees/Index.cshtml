@@ -7,8 +7,8 @@
 <h2>@ViewBag.Title</h2>
 <hr />
 
-<input type="button" class="btn btn-default" value="Back to Administration" onclick="location.href='@Url.Action("Index", "Admin")'" />
-<input type="button" class="btn btn-primary active" value="Create New Employee" onclick="location.href='@Url.Action("Create", "AdminEmployees")'" />
+@Html.ActionLink("Back to Administration", "Index", "Admin", null, new { @class = "btn btn-default" })
+@Html.ActionLink("Create New Employee", "Create", null, new { @class = "btn btn-primary active" })
 
 <table class="table table-striped">
     <thead>

@@ -20,7 +20,7 @@ namespace GLSOverviewWeb.Controllers
 
             using (var db = new glsoverviewdbEntities())
             {
-                var registrations = db.registrations.Include(r => r.car).Include(r => r.employee);
+                var registrations = db.registrations.Include(r => r.car).Include(r => r.employee).OrderByDescending(r => r.Date);
                 return View(registrations.ToList());
             }
         }
@@ -31,6 +31,9 @@ namespace GLSOverviewWeb.Controllers
             if (!LoginController.IsAdmin())
                 return View("~/Views/Login/Index.cshtml");
 
+            if (id == null)
+                return HttpNotFound();
+
             using (var db = new glsoverviewdbEntities())
             {
                 var reg = db.registrations.Find(id);
@@ -40,7 +43,6 @@ namespace GLSOverviewWeb.Controllers
                 reg.CommentHandled = !reg.CommentHandled;
                 db.SaveChanges();
             }
-
 
             return RedirectToAction("Index");
         }
