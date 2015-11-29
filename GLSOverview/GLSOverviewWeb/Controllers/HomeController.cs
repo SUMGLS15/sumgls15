@@ -81,7 +81,7 @@ namespace GLSOverviewWeb.Controllers
                     Car = _db.cars.Find(carId),
                     Employees = employees
                 };
-                
+
                 return View(rm);
             }
         }
@@ -130,14 +130,11 @@ namespace GLSOverviewWeb.Controllers
             using (var _db = new glsoverviewdbEntities())
             {
                 var lastAddedReg = _db.registrations.Max(r => r.Date);
-
                 if (lastAddedReg.Date >= DateTime.Today) return;
 
                 foreach (var car in _db.cars)
-                {
                     car.Status = (int)StatusTypes.Arrived;
-                }
-
+                
                 _db.SaveChanges();
             }
         }

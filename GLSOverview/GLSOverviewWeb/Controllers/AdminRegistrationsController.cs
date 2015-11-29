@@ -52,9 +52,8 @@ namespace GLSOverviewWeb.Controllers
         public ActionResult Edit(int? id)
         {
             if (id == null)
-            {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
+
             registration registration = db.registrations.Find(id);
             if (registration == null)
             {
@@ -87,9 +86,8 @@ namespace GLSOverviewWeb.Controllers
         public ActionResult Delete(int? id)
         {
             if (id == null)
-            {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
+            
             registration registration = db.registrations.Find(id);
             if (registration == null)
             {
